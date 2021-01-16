@@ -107,7 +107,7 @@ section {
   box-shadow: none;
 }
 
-/* Banner */
+  /* Banner */
 .banner {
   position: relative;
 }
@@ -182,6 +182,11 @@ section {
 /* Catalog */
 .catalog {
   min-height: 600px;
+
+  .form-control {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
 
 .catalog-categories {
@@ -290,4 +295,28 @@ h2, .h2 {
 .cart{
   max-width: 30rem;
   margin: 0 auto;
+}
+.nav-item {
+  .btn {
+    border: none;
+  }
+
+  .btn-outline-secondary:hover {
+    background-color: #becbd4;
+  }
+}
+.img-fluid {
+  height: 250px;
+}
+
+.additional {
+  width: 100%;
+  position: relative;
+  .preloader {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 60px);
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

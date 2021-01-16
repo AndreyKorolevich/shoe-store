@@ -1,19 +1,19 @@
-import React from "react";
+import React from 'react'
 
 const CardDetail = () => {
   return (
-    <section className="catalog-item">
-      <h2 className="text-center">Босоножки MYER</h2>
-      <div className="row">
-        <div className="col-5">
+    <section className='catalog-item'>
+      <h2 className='text-center'>Босоножки MYER</h2>
+      <div className='row'>
+        <div className='col-5'>
           <img
-            src="https://cdn-images.farfetch-contents.com/12/93/06/52/12930652_13567910_1000.jpg"
-            className="img-fluid"
-            alt=""
+            src='https://cdn-images.farfetch-contents.com/12/93/06/52/12930652_13567910_1000.jpg'
+            className='img-fluid'
+            alt=''
           />
         </div>
-        <div className="col-7">
-          <table className="table table-bordered">
+        <div className='col-7'>
+          <table className='table table-bordered'>
             <tbody>
               <tr>
                 <td>Артикул</td>
@@ -41,32 +41,31 @@ const CardDetail = () => {
               </tr>
             </tbody>
           </table>
-          <div className="text-center">
+          <div className='text-center'>
             <p>
-              Размеры в наличии:{" "}
-              <span className="catalog-item-size selected">18 US</span>{" "}
-              <span className="catalog-item-size">20 US</span>
+              Размеры в наличии: <span className='catalog-item-size selected'>18 US</span>{' '}
+              <span className='catalog-item-size'>20 US</span>
             </p>
             <p>
-              Количество:{" "}
-              <span className="btn-group btn-group-sm pl-2">
-                <button type="button" className="btn btn-secondary">
+              Количество:{' '}
+              <span className='btn-group btn-group-sm pl-2'>
+                <button type='button' className='btn btn-secondary'>
                   -
                 </button>
-                <span className="btn btn-outline-primary">1</span>
-                <button type="button" className="btn btn-secondary">
+                <span className='btn btn-outline-primary'>1</span>
+                <button type='button' className='btn btn-secondary'>
                   +
                 </button>
               </span>
             </p>
           </div>
-          <button type="button" className="btn btn-danger btn-block btn-lg">
+          <button type='button' className='btn btn-danger btn-block btn-lg'>
             В корзину
           </button>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default CardDetail;
+export default CardDetail

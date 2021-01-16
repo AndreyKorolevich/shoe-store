@@ -24,7 +24,7 @@
   "include": [
     "src"
   ],
-  "exclude":[
+  "exclude": [
     "node_modules"
   ]
 }

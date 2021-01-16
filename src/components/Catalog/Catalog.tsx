@@ -1,62 +1,73 @@
-import React from "react";
-import CatalogNavbar from "./CatalogNavbar";
-import Card from "./Card";
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { InterfaceCard, InterfaceCategory } from '../../redux/interfaces/interface'
+import Preloader from '../Common/Preloader'
+import {
+  getCatalog,
+  getCategories, getLoadingAdditionalShoes,
+  getLoadingCatalog,
+  getOffset,
+  getSelectedCategory,
+  getShowLoadElse,
+} from '../../redux/selectors/catalog_selectors'
+import { FETCH_CATALOG, LOAD_ELSE } from '../../redux/actions/actions'
+import CatalogNavbar from './CatalogNavbar'
+import Card from './Card'
 
 const Catalog = () => {
-  return (
-    <>
-      <section className="catalog">
-        <h2 className="text-center">Каталог</h2>
-        <form className="catalog-search-form form-inline">
-          <input className="form-control" placeholder="Поиск" />
-        </form>
-        <CatalogNavbar />
-        <div className="row">
-          <Card
-            price="34 000 руб."
-            id={1}
-            src="https://cdn-images.farfetch-contents.com/12/93/06/52/12930652_13567910_1000.jpg"
-            title="Босоножки 'MYER'"
-          />
-          <Card
-            price="7 600 руб."
-            id={2}
-            src="https://cdn-images.farfetch-contents.com/12/94/66/72/12946672_13518465_1000.jpg"
-            title="Босоножки 'Keira'"
-          />
-          <Card
-            price="1 400 руб."
-            id={3}
-            src="https://cdn-images.farfetch-contents.com/12/99/04/32/12990432_13705715_1000.jpg"
-            title="Супергеройские кеды"
-          />
-          <Card
-            price="34 000 руб."
-            id={1}
-            src="https://cdn-images.farfetch-contents.com/12/93/06/52/12930652_13567910_1000.jpg"
-            title="Босоножки 'MYER'"
-          />
-          <Card
-            price="7 600 руб."
-            id={2}
-            src="https://cdn-images.farfetch-contents.com/12/94/66/72/12946672_13518465_1000.jpg"
-            title="Босоножки 'Keira'"
-          />
-          <Card
-            price="1 400 руб."
-            id={3}
-            src="https://cdn-images.farfetch-contents.com/12/99/04/32/12990432_13705715_1000.jpg"
-            title="Супергеройские кеды"
-          />
-        </div>
-        <div className="text-center">
-          <button type="button" className="btn btn-outline-primary">
-            Загрузить ещё
-          </button>
-        </div>
-      </section>
-    </>
-  );
-};
+  const isLoadingCatalog: boolean = useSelector(getLoadingCatalog)
+  const isLoadingAdditionalShoes: boolean = useSelector(getLoadingAdditionalShoes)
+  const catalog: Array<InterfaceCard> = useSelector(getCatalog)
+  const categories: Array<InterfaceCategory> = useSelector(getCategories)
+  const selectCategory: number = useSelector(getSelectedCategory)
+  const showLoadElse: boolean = useSelector(getShowLoadElse)
+  const offset: number = useSelector(getOffset)
+  const dispatch = useDispatch()
 
-export default Catalog;
+  useEffect((): void => {
+    dispatch({
+      type: FETCH_CATALOG,
+    })
+  }, [dispatch])
+
+  const loadElse = () => {
+    dispatch({
+      type: LOAD_ELSE,
+      payload: {
+        selectCategory,
+        offset,
+      },
+    })
+  }
+
+  return (
+    <section className='catalog'>
+      <h2 className='text-center'>Каталог</h2>
+      {isLoadingCatalog ? (
+        <Preloader />
+      ) : (
+        <>
+          <form className='catalog-search-form form-inline'>
+            <input className='form-control' placeholder='Поиск' />
+          </form>
+          <CatalogNavbar categories={categories} />
+          <div className='row'>
+            {catalog.map(e => (
+              <Card key={e.id} id={e.id} price={e.price} src={e.images[0]} title={e.title} />
+            ))}
+          </div>
+          <div className='text-center additional'>
+            {showLoadElse && (
+              <button type='button' className='btn btn-outline-primary' onClick={loadElse} disabled={isLoadingAdditionalShoes}>
+                Загрузить ещё
+              </button>
+            )}
+            {isLoadingAdditionalShoes && <Preloader/>}
+          </div>
+        </>
+      )}
+    </section>
+  )
+}
+
+export default Catalog
