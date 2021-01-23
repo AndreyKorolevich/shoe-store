@@ -4,7 +4,10 @@ import {
   SET_CERTAIN_CATALOG,
   SET_SELECTED_CATEGORY,
   SET_ELSE_SHOES,
-  SET_LAST_SHOES, SET_LOADING_ADDITIONAL_SHOES,
+  SET_LAST_SHOES,
+  SET_LOADING_ADDITIONAL_SHOES,
+  CHANGE_LOADING_HIT,
+  CHANGE_LOADING_CATALOG, CHANGE_CATALOG_SEARCH,
 } from '../actions/actions'
 import { InterfaceCard, InterfaceCategory } from '../interfaces/interface'
 import { offset } from '../../constants/constants'
@@ -19,11 +22,12 @@ export interface InitialStateInterface {
   offset: number
   showLoadElse: boolean
   isLoadingAdditionalShoes: boolean
+  search: string
 }
 
 const initialState: InitialStateInterface = {
-  isLoadingHit: true,
-  isLoadingCatalog: true,
+  isLoadingHit: false,
+  isLoadingCatalog: false,
   catalog: [],
   salesHit: [],
   categories: [],
@@ -31,6 +35,7 @@ const initialState: InitialStateInterface = {
   offset,
   showLoadElse: true,
   isLoadingAdditionalShoes: false,
+  search: ''
 }
 
 export interface CatalogActionInterface {
@@ -44,14 +49,12 @@ export default function catalogReduser(state = initialState, action: any): Initi
       return {
         ...state,
         salesHit: action.payload.hit,
-        isLoadingHit: false,
       }
     case SET_CATALOG:
       return {
         ...state,
         catalog: action.payload.catalog,
         categories: action.payload.categories,
-        isLoadingCatalog: false,
       }
     case SET_CERTAIN_CATALOG:
       return {
@@ -77,10 +80,25 @@ export default function catalogReduser(state = initialState, action: any): Initi
         offset,
         showLoadElse: false,
       }
-      case SET_LOADING_ADDITIONAL_SHOES:
+    case SET_LOADING_ADDITIONAL_SHOES:
       return {
         ...state,
-        isLoadingAdditionalShoes: !state.isLoadingAdditionalShoes
+        isLoadingAdditionalShoes: !state.isLoadingAdditionalShoes,
+      }
+    case CHANGE_LOADING_HIT:
+      return {
+        ...state,
+        isLoadingHit: !state.isLoadingHit,
+      }
+    case CHANGE_LOADING_CATALOG:
+      return {
+        ...state,
+        isLoadingCatalog: !state.isLoadingCatalog,
+      }
+      case CHANGE_CATALOG_SEARCH:
+      return {
+        ...state,
+        search: action.payload.search,
       }
     default:
       return state

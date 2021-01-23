@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import cn from 'classnames'
 import { InterfaceCategory } from '../../redux/interfaces/interface'
 import { FETCH_CERTAIN_SHOES } from '../../redux/actions/actions'
-import { getSelectedCategory } from '../../redux/selectors/catalog_selectors'
+import {getSearch, getSelectedCategory} from '../../redux/selectors/catalog_selectors'
 
 interface InterfaceCatalogNavbar {
   categories: Array<InterfaceCategory>
@@ -11,6 +11,7 @@ interface InterfaceCatalogNavbar {
 
 const CatalogNavbar = ({ categories }: InterfaceCatalogNavbar) => {
   const selectCategory = useSelector(getSelectedCategory)
+  const search = useSelector(getSearch)
   const dispatch = useDispatch()
 
   const changeSelectedCategory = (id: number) => {
@@ -19,6 +20,7 @@ const CatalogNavbar = ({ categories }: InterfaceCatalogNavbar) => {
         type: FETCH_CERTAIN_SHOES,
         payload: {
           id,
+          search
         },
       })
     }

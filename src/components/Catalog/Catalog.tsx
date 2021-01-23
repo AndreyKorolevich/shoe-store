@@ -2,19 +2,25 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { InterfaceCard, InterfaceCategory } from '../../redux/interfaces/interface'
 import Preloader from '../Common/Preloader'
+import CatalogNavbar from './CatalogNavbar'
+import Card from './Card/Card'
+import CatalogSearch from './CatalogSearch'
+import { FETCH_CATALOG, LOAD_ELSE } from '../../redux/actions/actions'
 import {
   getCatalog,
-  getCategories, getLoadingAdditionalShoes,
+  getCategories,
+  getLoadingAdditionalShoes,
   getLoadingCatalog,
   getOffset,
   getSelectedCategory,
   getShowLoadElse,
 } from '../../redux/selectors/catalog_selectors'
-import { FETCH_CATALOG, LOAD_ELSE } from '../../redux/actions/actions'
-import CatalogNavbar from './CatalogNavbar'
-import Card from './Card'
 
-const Catalog = () => {
+interface CatalogInterface {
+  showSearchForm: boolean
+}
+
+const Catalog = ({showSearchForm = true}: CatalogInterface) => {
   const isLoadingCatalog: boolean = useSelector(getLoadingCatalog)
   const isLoadingAdditionalShoes: boolean = useSelector(getLoadingAdditionalShoes)
   const catalog: Array<InterfaceCard> = useSelector(getCatalog)
@@ -43,13 +49,11 @@ const Catalog = () => {
   return (
     <section className='catalog'>
       <h2 className='text-center'>Каталог</h2>
+      {showSearchForm && <CatalogSearch selectCategory={selectCategory} />}
       {isLoadingCatalog ? (
         <Preloader />
       ) : (
         <>
-          <form className='catalog-search-form form-inline'>
-            <input className='form-control' placeholder='Поиск' />
-          </form>
           <CatalogNavbar categories={categories} />
           <div className='row'>
             {catalog.map(e => (
@@ -58,11 +62,15 @@ const Catalog = () => {
           </div>
           <div className='text-center additional'>
             {showLoadElse && (
-              <button type='button' className='btn btn-outline-primary' onClick={loadElse} disabled={isLoadingAdditionalShoes}>
+              <button
+                type='button'
+                className='btn btn-outline-primary'
+                onClick={loadElse}
+                disabled={isLoadingAdditionalShoes}>
                 Загрузить ещё
               </button>
             )}
-            {isLoadingAdditionalShoes && <Preloader/>}
+            {isLoadingAdditionalShoes && <Preloader />}
           </div>
         </>
       )}

@@ -25,3 +25,6 @@ export function getShowLoadElse(state) {
 export function getLoadingAdditionalShoes(state) {
   return state.catalog.isLoadingAdditionalShoes
 }
+export function getSearch(state) {
+  return state.catalog.search
+}

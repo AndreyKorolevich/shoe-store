@@ -7,17 +7,26 @@ import {
   SET_CERTAIN_CATALOG,
   SET_SELECTED_CATEGORY,
   SET_ELSE_SHOES,
-  SET_LAST_SHOES, SET_LOADING_ADDITIONAL_SHOES,
+  SET_LAST_SHOES,
+  SET_LOADING_ADDITIONAL_SHOES,
+  CHANGE_LOADING_CATALOG,
+  CHANGE_LOADING_HIT, CHANGE_LOADING_CARD_DETAILS, SET_CARD_DETAILS,
 } from '../actions/actions'
 
 export function* fetchSalesHitSaga() {
   try {
+    yield put({
+      type: CHANGE_LOADING_HIT,
+    })
     const hit = yield call(api.fetchSalesHitApi)
     yield put({
       type: SET_SALES_HIT,
       payload: {
         hit,
       },
+    })
+    yield put({
+      type: CHANGE_LOADING_HIT,
     })
   } catch (e) {
     yield put({
@@ -31,6 +40,9 @@ export function* fetchSalesHitSaga() {
 
 export function* fetchCatalogSaga() {
   try {
+    yield put({
+      type: CHANGE_LOADING_CATALOG,
+    })
     const catalog = yield call(api.fetchCatalogApi)
     const categories = yield call(api.fetchCategoriesApi)
     yield put({
@@ -39,6 +51,9 @@ export function* fetchCatalogSaga() {
         catalog,
         categories,
       },
+    })
+    yield put({
+      type: CHANGE_LOADING_CATALOG,
     })
   } catch (e) {
     yield put({
@@ -58,7 +73,7 @@ export function* fetchCertainShoesSaga(action) {
         id: action.payload.id,
       },
     })
-    const shoes = yield call(api.fetchCertainShoesApi, action.payload.id)
+    const shoes = yield call(api.fetchCertainShoesApi, action.payload.id, action.payload.search)
     yield put({
       type: SET_CERTAIN_CATALOG,
       payload: {
@@ -102,6 +117,63 @@ export function* fetchElseShoesSaga(action) {
     }
     yield put({
       type: SET_LOADING_ADDITIONAL_SHOES,
+    })
+  } catch (e) {
+    yield put({
+      type: SET_ERROR,
+      payload: {
+        error: e.toString(),
+      },
+    })
+  }
+}
+
+export function* fetchSearchShoesSaga(action) {
+  try {
+    yield put({
+      type: CHANGE_LOADING_CATALOG,
+    })
+    const data = yield call(
+      api.searchSkillsApi,
+      action.payload.search,
+      action.payload.selectCategory
+    )
+    yield put({
+      type: SET_CERTAIN_CATALOG,
+      payload: {
+        catalog: data,
+      },
+    })
+    yield put({
+      type: CHANGE_LOADING_CATALOG,
+    })
+  } catch (e) {
+    yield put({
+      type: SET_ERROR,
+      payload: {
+        error: e.toString(),
+      },
+    })
+  }
+}
+
+export function* fetchCardDetailsSaga(action) {
+  try {
+    yield put({
+      type: CHANGE_LOADING_CARD_DETAILS,
+    })
+    const data = yield call(
+      api.fetchCardDetailsApi,
+      action.payload.id,
+    )
+    yield put({
+      type: SET_CARD_DETAILS,
+      payload: {
+        openCard: data,
+      },
+    })
+    yield put({
+      type: CHANGE_LOADING_CARD_DETAILS,
     })
   } catch (e) {
     yield put({

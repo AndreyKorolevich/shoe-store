@@ -14,11 +14,11 @@ const Header = () => {
             <NavLink className='navbar-brand' to='/'>
               <img src={logo} alt='Bosa Noga' />
             </NavLink>
-            <div className='collapase navbar-collapse' id='navbarMain'>
+            <div className='collapase navbar-collapse'>
               <Navbar />
-              <div>
-                <HeaderIcons />
+              <div className='header-block-actions'>
                 <Search />
+                <HeaderIcons />
               </div>
             </div>
           </nav>

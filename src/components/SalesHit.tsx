@@ -1,6 +1,6 @@
 import React from 'react'
 import { InterfaceCard } from '../redux/interfaces/interface'
-import Card from './Catalog/Card'
+import Card from './Catalog/Card/Card'
 
 export interface StandardSalesHitProps {
   salesHit: Array<InterfaceCard>

@@ -11,7 +11,7 @@ import Cart from './components/Cart/Cart'
 import Error from './components/Error/Error'
 import Main from './components/Main'
 import Banner from './components/Common/Banner'
-import CardDetail from './components/Catalog/CardDetail'
+import CardDetail from './components/Catalog/Card/CardDetail'
 import { getError } from './redux/selectors/error_selector'
 
 function App() {

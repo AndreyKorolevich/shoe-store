@@ -29,7 +29,7 @@ const Main = () => {
         <h2 className='text-center'>Хиты продаж!</h2>
         {isLoadingHit ? <Preloader /> : <SalesHit salesHit={salesHit} />}
       </section>
-      <Catalog />
+      <Catalog showSearchForm={false}/>
     </>
   )
 }
