@@ -11,6 +11,11 @@ export interface InterfaceCategory {
   title: string
 }
 
+export interface SizeInterface {
+  size: string
+  avalible: boolean
+}
+
 export interface CardDetailInterface {
   id: number
   category: number
@@ -24,8 +29,10 @@ export interface CardDetailInterface {
   season: string
   heelSize: string
   price: number
-  sizes: Array<{
-    size: string
-    avalible: boolean
-  }>
+  sizes: Array<SizeInterface>
+}
+
+export interface SelectCardInterface extends CardDetailInterface {
+  count: number
+  selectedSize: string
 }

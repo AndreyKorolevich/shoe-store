@@ -1,5 +1,4 @@
-import { SET_CATALOG, SET_ERROR, SET_SALES_HIT } from '../actions/actions'
-import { InterfaceCard, InterfaceCategory } from '../interfaces/interface'
+import { SET_ERROR } from '../actions/actions'
 
 export interface InitialStateInterface {
   error: null | string

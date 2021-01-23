@@ -1,14 +1,24 @@
-import {CHANGE_LOADING_CARD_DETAILS, SET_CARD_DETAILS} from "../actions/actions";
-import {CardDetailInterface} from "../interfaces/interface";
+import {
+  ADD_SHOES_CART,
+  CHANGE_COUNT,
+  CHANGE_LOADING_CARD_DETAILS,
+  CHANGE_SIZE,
+  SET_CARD_DETAILS,
+} from '../actions/actions'
+import { CardDetailInterface } from '../interfaces/interface'
 
 export interface InitialStateInterface {
   openCard: null | CardDetailInterface
   isLoadingCardDetails: boolean
+  count: number
+  selectedSize: string
 }
 
 const initialState: InitialStateInterface = {
   openCard: null,
-  isLoadingCardDetails: false
+  isLoadingCardDetails: false,
+  count: 1,
+  selectedSize: '',
 }
 
 export default function cardReducer(state = initialState, action: any): InitialStateInterface {
@@ -18,10 +28,27 @@ export default function cardReducer(state = initialState, action: any): InitialS
         ...state,
         openCard: action.payload.openCard,
       }
-      case CHANGE_LOADING_CARD_DETAILS:
+    case CHANGE_LOADING_CARD_DETAILS:
       return {
         ...state,
         isLoadingCardDetails: !state.isLoadingCardDetails,
+      }
+    case CHANGE_COUNT:
+      return {
+        ...state,
+        count: action.payload.count,
+      }
+    case CHANGE_SIZE:
+      return {
+        ...state,
+        selectedSize: action.payload.size,
+      }
+    case ADD_SHOES_CART:
+      return {
+        ...state,
+        openCard: null,
+        count: 1,
+        selectedSize: '',
       }
     default:
       return state

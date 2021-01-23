@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {CHANGE_CATALOG_SEARCH, SEARCH_SHOES} from '../../redux/actions/actions'
-import {getSearch} from "../../redux/selectors/catalog_selectors";
+import { CHANGE_CATALOG_SEARCH, SEARCH_SHOES } from '../../redux/actions/actions'
+import { getSearch } from '../../redux/selectors/catalog_selectors'
 
 interface CatalogSearchInterface {
   selectCategory: number
 }
 
 const CatalogSearch = (props: CatalogSearchInterface) => {
-  const value = useSelector(getSearch);
+  const value = useSelector(getSearch)
   const dispatch = useDispatch()
 
   const handleSubmit = (e: React.FormEvent): void => {
@@ -25,9 +25,9 @@ const CatalogSearch = (props: CatalogSearchInterface) => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     dispatch({
       type: CHANGE_CATALOG_SEARCH,
-      payload:{
-        search: e.target.value
-      }
+      payload: {
+        search: e.target.value,
+      },
     })
     dispatch({
       type: SEARCH_SHOES,
@@ -40,7 +40,8 @@ const CatalogSearch = (props: CatalogSearchInterface) => {
 
   return (
     <form className='catalog-search-form form-inline' onSubmit={handleSubmit}>
-      <input name='search' className='form-control' value={value} placeholder='Поиск' onChange={onChange} />
+      <input name='search' className='form-control' value={value}
+placeholder='Поиск' onChange={onChange} />
     </form>
   )
 }

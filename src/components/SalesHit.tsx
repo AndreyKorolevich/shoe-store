@@ -10,7 +10,8 @@ const SalesHit = ({ salesHit }: StandardSalesHitProps) => {
   return (
     <div className='row'>
       {salesHit.map(e => (
-        <Card key={e.id} price={e.price} id={e.id} src={e.images[0]} title={e.title} />
+        <Card key={e.id} price={e.price} id={e.id}
+src={e.images[0]} title={e.title} />
       ))}
     </div>
   )

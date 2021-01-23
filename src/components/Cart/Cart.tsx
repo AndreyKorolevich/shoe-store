@@ -1,10 +1,16 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { getSelectShoes } from '../../redux/selectors/cart_selector'
+import CartForm from './CartForm'
+import { SelectCardInterface } from '../../redux/interfaces/interface'
+import CartElement from './CartElement'
 
 const Cart = () => {
+  const selectShoes: Array<SelectCardInterface> = useSelector(getSelectShoes)
+
   return (
     <>
-      <section className='cart'>
+      <section>
         <h2 className='text-center'>Корзина</h2>
         <table className='table table-bordered'>
           <thead>
@@ -19,63 +25,23 @@ const Cart = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope='row'>1</th>
-              <td>
-                <NavLink to='/products/1.html'>Босоножки MYER</NavLink>
-              </td>
-              <td>18 US</td>
-              <td>1</td>
-              <td>34 000 руб.</td>
-              <td>34 000 руб.</td>
-              <td>
-                <button type='button' className='btn btn-outline-danger btn-sm'>
-                  Удалить
-                </button>
-              </td>
-            </tr>
+            {selectShoes.map((e, i) => (
+              <CartElement
+                key={e.id} id={e.id} number={i + 1}
+                title={e.title} price={e.price} count={e.count}
+                size={e.selectedSize}
+              />
+            ))}
             <tr>
               <td colSpan={5} className='text-right'>
                 Общая стоимость
               </td>
-              <td>34 000 руб.</td>
+              <td>{selectShoes.reduce((sum, e) => sum + e.price * e.count, 0)} руб.</td>
             </tr>
           </tbody>
         </table>
       </section>
-      <section className='order'>
-        <h2 className='text-center'>Оформить заказ</h2>
-        <div className='card cart'>
-          <form className='card-body'>
-            <div className='form-group'>
-              <label htmlFor='phone'>
-                Телефон
-                <input className='form-control' id='phone' placeholder='Ваш телефон' type='text' />
-              </label>
-            </div>
-            <div className='form-group'>
-              <label htmlFor='phone'>
-                Адрес доставки
-                <input
-                  className='form-control'
-                  placeholder='Адрес доставки'
-                  id='address'
-                  type='text'
-                />
-              </label>
-            </div>
-            <div className='form-group form-check'>
-              <label className='form-check-label' htmlFor='agreement'>
-                <input type='checkbox' className='form-check-input' id='agreement' />
-                Согласен с правилами доставки
-              </label>
-            </div>
-            <button type='submit' className='btn btn-outline-secondary'>
-              Оформить
-            </button>
-          </form>
-        </div>
-      </section>
+      <CartForm />
     </>
   )
 }

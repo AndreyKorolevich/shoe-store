@@ -10,9 +10,9 @@ const api = {
       throw new Error(e)
     }
   },
-  fetchCatalogApi: async () => {
+  fetchCatalogApi: async (selectCategory: number) => {
     try {
-      const allElements = await fetch('http://localhost:7070/api/items')
+      const allElements = await fetch(`http://localhost:7070/api/items?categoryId=${selectCategory}`)
       if (!allElements.ok) {
         throw new Error(allElements.statusText)
       }
@@ -45,19 +45,17 @@ const api = {
   },
   fetchElseShoesApi: async (selectCategory: number, offset: number) => {
     try {
-      let soues
+      let shoes
       if (selectCategory === 0) {
-        soues = await fetch(`http://localhost:7070/api/items?&offset=${offset}`)
+        shoes = await fetch(`http://localhost:7070/api/items?&offset=${offset}`)
       } else {
-        soues = await fetch(
-          `http://localhost:7070/api/items?categoryId=${selectCategory}&offset=${offset}`
-        )
+        shoes = await fetch(`http://localhost:7070/api/items?categoryId=${selectCategory}&offset=${offset}`)
       }
 
-      if (!soues.ok) {
-        throw new Error(soues.statusText)
+      if (!shoes.ok) {
+        throw new Error(shoes.statusText)
       }
-      return soues.json()
+      return shoes.json()
     } catch (e) {
       throw new Error(e)
     }
@@ -68,9 +66,7 @@ const api = {
       if (selectCategory === 0) {
         response = await fetch(`http://localhost:7070/api/items?q=${search}`)
       } else {
-        response = await fetch(
-          `http://localhost:7070/api/items?categoryId=${selectCategory}&q=${search}`
-        )
+        response = await fetch(`http://localhost:7070/api/items?categoryId=${selectCategory}&q=${search}`)
       }
 
       if (!response.ok) {
@@ -81,7 +77,7 @@ const api = {
       throw new Error(e)
     }
   },
-  fetchCardDetailsApi: async (id:string) => {
+  fetchCardDetailsApi: async (id: string) => {
     try {
       const response = await fetch(` http://localhost:7070/api/items/${id}`)
 
@@ -89,6 +85,24 @@ const api = {
         throw new Error(response.statusText)
       }
       return response.json()
+    } catch (e) {
+      throw new Error(e)
+    }
+  },
+  sendFormApi: async (data) => {
+    debugger
+    try {
+      const response = await fetch('http://localhost:7070/api/order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(data)
+      })
+      if (!response.ok) {
+        throw new Error(response.statusText)
+      }
+      return response.ok
     } catch (e) {
       throw new Error(e)
     }

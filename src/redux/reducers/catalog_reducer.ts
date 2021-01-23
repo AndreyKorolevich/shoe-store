@@ -7,7 +7,8 @@ import {
   SET_LAST_SHOES,
   SET_LOADING_ADDITIONAL_SHOES,
   CHANGE_LOADING_HIT,
-  CHANGE_LOADING_CATALOG, CHANGE_CATALOG_SEARCH,
+  CHANGE_LOADING_CATALOG,
+  CHANGE_CATALOG_SEARCH,
 } from '../actions/actions'
 import { InterfaceCard, InterfaceCategory } from '../interfaces/interface'
 import { offset } from '../../constants/constants'
@@ -35,7 +36,7 @@ const initialState: InitialStateInterface = {
   offset,
   showLoadElse: true,
   isLoadingAdditionalShoes: false,
-  search: ''
+  search: '',
 }
 
 export interface CatalogActionInterface {
@@ -95,7 +96,7 @@ export default function catalogReduser(state = initialState, action: any): Initi
         ...state,
         isLoadingCatalog: !state.isLoadingCatalog,
       }
-      case CHANGE_CATALOG_SEARCH:
+    case CHANGE_CATALOG_SEARCH:
       return {
         ...state,
         search: action.payload.search,

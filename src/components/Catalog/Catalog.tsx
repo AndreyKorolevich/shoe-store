@@ -20,7 +20,7 @@ interface CatalogInterface {
   showSearchForm: boolean
 }
 
-const Catalog = ({showSearchForm = true}: CatalogInterface) => {
+const Catalog = ({ showSearchForm = true }: CatalogInterface) => {
   const isLoadingCatalog: boolean = useSelector(getLoadingCatalog)
   const isLoadingAdditionalShoes: boolean = useSelector(getLoadingAdditionalShoes)
   const catalog: Array<InterfaceCard> = useSelector(getCatalog)
@@ -33,8 +33,11 @@ const Catalog = ({showSearchForm = true}: CatalogInterface) => {
   useEffect((): void => {
     dispatch({
       type: FETCH_CATALOG,
+      payload: {
+        selectCategory,
+      },
     })
-  }, [dispatch])
+  }, [dispatch, selectCategory])
 
   const loadElse = () => {
     dispatch({
@@ -57,7 +60,8 @@ const Catalog = ({showSearchForm = true}: CatalogInterface) => {
           <CatalogNavbar categories={categories} />
           <div className='row'>
             {catalog.map(e => (
-              <Card key={e.id} id={e.id} price={e.price} src={e.images[0]} title={e.title} />
+              <Card key={e.id} id={e.id} price={e.price}
+src={e.images[0]} title={e.title} />
             ))}
           </div>
           <div className='text-center additional'>

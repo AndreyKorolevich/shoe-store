@@ -2,14 +2,8 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Preloader from './Common/Preloader'
 import SalesHit from './SalesHit'
-import { FETCH_CATALOG, FETCH_SALES_HIT } from '../redux/actions/actions'
-import {
-  getCatalog,
-  getCategories,
-  getLoadingCatalog,
-  getLoadingHit,
-  getSalesHit,
-} from '../redux/selectors/catalog_selectors'
+import { FETCH_SALES_HIT } from '../redux/actions/actions'
+import { getLoadingHit, getSalesHit } from '../redux/selectors/catalog_selectors'
 import { InterfaceCard } from '../redux/interfaces/interface'
 import Catalog from './Catalog/Catalog'
 
@@ -29,7 +23,7 @@ const Main = () => {
         <h2 className='text-center'>Хиты продаж!</h2>
         {isLoadingHit ? <Preloader /> : <SalesHit salesHit={salesHit} />}
       </section>
-      <Catalog showSearchForm={false}/>
+      <Catalog showSearchForm={false} />
     </>
   )
 }

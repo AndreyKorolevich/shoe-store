@@ -22,7 +22,9 @@ const Card = ({
           <p className='card-text'>{title}</p>
           <p className='card-text'>{price}</p>
           <NavLink to={`/products/${id}.html`}>
-            <button type='button' className='btn btn-outline-primary'>Заказать</button>
+            <button type='button' className='btn btn-outline-primary'>
+              Заказать
+            </button>
           </NavLink>
         </div>
       </div>

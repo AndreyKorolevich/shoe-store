@@ -1,19 +1,19 @@
-import { take, fork, spawn, debounce, put } from 'redux-saga/effects'
+import { take, fork, spawn, debounce } from 'redux-saga/effects'
 import { filterChangeSearchAction } from '../../utils/filter_change_search_action'
 import {
   FETCH_CARD_DETAILS,
   FETCH_CATALOG,
   FETCH_CERTAIN_SHOES,
   FETCH_SALES_HIT,
-  LOAD_ELSE,
-  SEARCH_SHOES,
+  LOAD_ELSE, SUBMIT_ORDER,
 } from '../actions/actions'
 import {
   fetchSalesHitSaga,
   fetchCatalogSaga,
   fetchCertainShoesSaga,
   fetchElseShoesSaga,
-  fetchSearchShoesSaga, fetchCardDetailsSaga,
+  fetchSearchShoesSaga,
+  fetchCardDetailsSaga, sendFormSaga,
 } from './saga'
 
 function* watchGetSalesHitSaga() {
@@ -25,8 +25,8 @@ function* watchGetSalesHitSaga() {
 
 function* watchGetCatalogSaga() {
   while (true) {
-    yield take(FETCH_CATALOG)
-    yield fork(fetchCatalogSaga)
+    const action = yield take(FETCH_CATALOG)
+    yield fork(fetchCatalogSaga, action)
   }
 }
 
@@ -51,6 +51,13 @@ function* watchGetCardDetailsSaga() {
   }
 }
 
+function* watchSubmitFormSaga() {
+  while (true) {
+    const action = yield take(SUBMIT_ORDER)
+    yield fork(sendFormSaga, action)
+  }
+}
+
 function* watchCatalogSearchSaga() {
   yield debounce(300, filterChangeSearchAction, fetchSearchShoesSaga)
 }
@@ -62,4 +69,5 @@ export default function* saga() {
   yield spawn(watchLoadElseSaga)
   yield spawn(watchCatalogSearchSaga)
   yield spawn(watchGetCardDetailsSaga)
+  yield spawn(watchSubmitFormSaga)
 }
