@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <ul className='navbar-nav mr-auto'>
       <li className='nav-item'>
-        <NavLink className='nav-link' to='/main.html'>
+        <NavLink className='nav-link' to='/'>
           Главная
         </NavLink>
       </li>

@@ -340,6 +340,16 @@ h2, .h2 {
   border-color: #727e86;
 }
 
+.card {
+  .card-body {
+    .card-text {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+}
+
 .cart{
   max-width: 30rem;
   margin: 0 auto;
@@ -354,7 +364,14 @@ h2, .h2 {
   }
 }
 .img-fluid {
-  height: 250px;
+  height: 400px;
+  object-fit: cover;
+}
+.catalog-item-card {
+  .img-fluid {
+    height: 250px;
+    object-fit: cover;
+  }
 }
 
 .additional {
