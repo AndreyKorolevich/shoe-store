@@ -1,30 +1,32 @@
-export function getLoadingHit(state) {
-  return state.catalog.isLoadingHit
+import { StateType } from '../store';
+
+export function getLoadingHit(state: StateType) {
+  return state.catalog.isLoadingHit;
 }
-export function getSalesHit(state) {
-  return state.catalog.salesHit
+export function getSalesHit(state: StateType) {
+  return state.catalog.salesHit;
 }
-export function getLoadingCatalog(state) {
-  return state.catalog.isLoadingCatalog
+export function getLoadingCatalog(state: StateType) {
+  return state.catalog.isLoadingCatalog;
 }
-export function getCatalog(state) {
-  return state.catalog.catalog
+export function getCatalog(state: StateType) {
+  return state.catalog.catalog;
 }
-export function getCategories(state) {
-  return state.catalog.categories
+export function getCategories(state: StateType) {
+  return state.catalog.categories;
 }
-export function getSelectedCategory(state) {
-  return state.catalog.selectCategory
+export function getSelectedCategory(state: StateType) {
+  return state.catalog.selectCategory;
 }
-export function getOffset(state) {
-  return state.catalog.offset
+export function getOffset(state: StateType) {
+  return state.catalog.offset;
 }
-export function getShowLoadElse(state) {
-  return state.catalog.showLoadElse
+export function getShowLoadElse(state: StateType) {
+  return state.catalog.showLoadElse;
 }
-export function getLoadingAdditionalShoes(state) {
-  return state.catalog.isLoadingAdditionalShoes
+export function getLoadingAdditionalShoes(state: StateType) {
+  return state.catalog.isLoadingAdditionalShoes;
 }
-export function getSearch(state) {
-  return state.catalog.search
+export function getSearch(state: StateType) {
+  return state.catalog.search;
 }

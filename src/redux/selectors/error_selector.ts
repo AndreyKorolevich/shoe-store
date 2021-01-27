@@ -1,3 +1,3 @@
-export const getError = state => {
-  return state.error.error
-}
+import { StateType } from '../store';
+
+export const getError = (state: StateType) => state.error.error;

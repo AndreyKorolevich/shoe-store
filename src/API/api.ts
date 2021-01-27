@@ -1,112 +1,120 @@
-const api = {
-  fetchSalesHitApi: async () => {
+export default class Api {
+  static url() {
+    return 'http://localhost:7070/api/';
+  }
+
+  static async fetchSalesHitApi() {
     try {
-      const response = await fetch('http://localhost:7070/api/top-sales')
+      const response = await fetch(`${Api.url()}top-sales`);
       if (!response.ok) {
-        throw new Error(response.statusText)
+        throw new Error(response.statusText);
       }
-      return response.json()
+      return response.json();
     } catch (e) {
-      throw new Error(e)
+      throw new Error(e);
     }
-  },
-  fetchCatalogApi: async (selectCategory: number) => {
+  }
+
+  static async fetchCatalogApi(selectCategory: number) {
     try {
-      const allElements = await fetch(`http://localhost:7070/api/items?categoryId=${selectCategory}`)
+      const allElements = await fetch(`${Api.url()}items?categoryId=${selectCategory}`);
       if (!allElements.ok) {
-        throw new Error(allElements.statusText)
+        throw new Error(allElements.statusText);
       }
-      return allElements.json()
+      return allElements.json();
     } catch (e) {
-      throw new Error(e)
+      throw new Error(e);
     }
-  },
-  fetchCategoriesApi: async () => {
+  }
+
+  static async fetchCategoriesApi() {
     try {
-      const categories = await fetch('http://localhost:7070/api/categories')
+      const categories = await fetch(`${Api.url()}categories`);
       if (!categories.ok) {
-        throw new Error(categories.statusText)
+        throw new Error(categories.statusText);
       }
-      return categories.json()
+      return categories.json();
     } catch (e) {
-      throw new Error(e)
+      throw new Error(e);
     }
-  },
-  fetchCertainShoesApi: async (id: number, search: string) => {
+  }
+
+  static async fetchCertainShoesApi(id: number, search: string) {
     try {
-      const shoes = await fetch(`http://localhost:7070/api/items?categoryId=${id}&q=${search}`)
+      const shoes = await fetch(`${Api.url()}items?categoryId=${id}&q=${search}`);
       if (!shoes.ok) {
-        throw new Error(shoes.statusText)
+        throw new Error(shoes.statusText);
       }
-      return shoes.json()
+      return shoes.json();
     } catch (e) {
-      throw new Error(e)
+      throw new Error(e);
     }
-  },
-  fetchElseShoesApi: async (selectCategory: number, offset: number) => {
+  }
+
+  static async fetchElseShoesApi(selectCategory: number, offset: number) {
     try {
-      let shoes
+      let shoes;
       if (selectCategory === 0) {
-        shoes = await fetch(`http://localhost:7070/api/items?&offset=${offset}`)
+        shoes = await fetch(`${Api.url()}items?&offset=${offset}`);
       } else {
-        shoes = await fetch(`http://localhost:7070/api/items?categoryId=${selectCategory}&offset=${offset}`)
+        shoes = await fetch(`${Api.url()}items?categoryId=${selectCategory}&offset=${offset}`);
       }
 
       if (!shoes.ok) {
-        throw new Error(shoes.statusText)
+        throw new Error(shoes.statusText);
       }
-      return shoes.json()
+      return shoes.json();
     } catch (e) {
-      throw new Error(e)
+      throw new Error(e);
     }
-  },
-  searchSkillsApi: async (search: string, selectCategory: number) => {
+  }
+
+  static async searchSkillsApi(search: string, selectCategory: number) {
     try {
-      let response
+      let response;
       if (selectCategory === 0) {
-        response = await fetch(`http://localhost:7070/api/items?q=${search}`)
+        response = await fetch(`${Api.url()}items?q=${search}`);
       } else {
-        response = await fetch(`http://localhost:7070/api/items?categoryId=${selectCategory}&q=${search}`)
+        response = await fetch(`${Api.url()}items?categoryId=${selectCategory}&q=${search}`);
       }
 
       if (!response.ok) {
-        throw new Error(response.statusText)
+        throw new Error(response.statusText);
       }
-      return response.json()
+      return response.json();
     } catch (e) {
-      throw new Error(e)
+      throw new Error(e);
     }
-  },
-  fetchCardDetailsApi: async (id: string) => {
+  }
+
+  static async fetchCardDetailsApi(id: string) {
     try {
-      const response = await fetch(` http://localhost:7070/api/items/${id}`)
+      const response = await fetch(`${Api.url()}items/${id}`);
 
       if (!response.ok) {
-        throw new Error(response.statusText)
+        throw new Error(response.statusText);
       }
-      return response.json()
+      return response.json();
     } catch (e) {
-      throw new Error(e)
+      throw new Error(e);
     }
-  },
-  sendFormApi: async (data) => {
-    debugger
+  }
+
+  static async sendFormApi(data) {
     try {
-      const response = await fetch('http://localhost:7070/api/order', {
+      const response = await fetch(`${Api.url()}order`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json;charset=utf-8'
+          'Content-Type': 'application/json;charset=utf-8',
         },
-        body: JSON.stringify(data)
-      })
+        body: JSON.stringify(data),
+      });
       if (!response.ok) {
-        throw new Error(response.statusText)
+        throw new Error(response.statusText);
       }
-      return response.ok
+      return response.ok;
     } catch (e) {
-      throw new Error(e)
+      throw new Error(e);
     }
-  },
+  }
 }
-
-export default api

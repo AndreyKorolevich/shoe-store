@@ -1,6 +1,4 @@
-export const getSelectShoes = state => {
-  return state.cart.selectShoes
-}
-export const getLoadingSendForm = state => {
-  return state.cart.isLoadingSentForm
-}
+import { StateType } from '../store';
+
+export const getSelectShoes = (state: StateType) => state.cart.selectShoes;
+export const getLoadingSendForm = (state: StateType) => state.cart.isLoadingSentForm;

@@ -1,18 +1,18 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import cn from 'classnames'
-import { InterfaceCategory } from '../../redux/interfaces/interface'
-import { FETCH_CERTAIN_SHOES } from '../../redux/actions/actions'
-import { getSearch, getSelectedCategory } from '../../redux/selectors/catalog_selectors'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import cn from 'classnames';
+import { InterfaceCategory } from '../../interfaces/interface';
+import { FETCH_CERTAIN_SHOES } from '../../redux/actions/actions';
+import { getSearch, getSelectedCategory } from '../../redux/selectors/catalog_selectors';
 
 interface InterfaceCatalogNavbar {
   categories: Array<InterfaceCategory>
 }
 
-const CatalogNavbar = ({ categories }: InterfaceCatalogNavbar) => {
-  const selectCategory = useSelector(getSelectedCategory)
-  const search = useSelector(getSearch)
-  const dispatch = useDispatch()
+const CatalogNavbar: React.FC<InterfaceCatalogNavbar> = ({ categories }) => {
+  const selectCategory: number = useSelector(getSelectedCategory);
+  const search: string = useSelector(getSearch);
+  const dispatch = useDispatch();
 
   const changeSelectedCategory = (id: number) => {
     if (selectCategory !== id) {
@@ -22,36 +22,34 @@ const CatalogNavbar = ({ categories }: InterfaceCatalogNavbar) => {
           id,
           search,
         },
-      })
+      });
     }
-  }
+  };
 
   return (
-    <ul className='catalog-categories nav justify-content-center'>
-      <li className='nav-item'>
+    <ul className="catalog-categories nav justify-content-center">
+      <li className="nav-item">
         <button
-          type='button'
-          className={cn('btn btn-outline-secondary', {
-            active: selectCategory === 0,
-          })}
-          onClick={() => changeSelectedCategory(0)}>
+          type="button"
+          className={cn('btn btn-outline-secondary', { active: selectCategory === 0 })}
+          onClick={() => changeSelectedCategory(0)}
+        >
           Все
         </button>
       </li>
-      {categories.map(e => (
-        <li key={e.id} className='nav-item'>
+      {categories.map((e) => (
+        <li key={e.id} className="nav-item">
           <button
-            type='button'
-            className={cn('btn btn-outline-secondary', {
-              active: selectCategory === e.id,
-            })}
-            onClick={() => changeSelectedCategory(e.id)}>
+            type="button"
+            className={cn('btn btn-outline-secondary', { active: selectCategory === e.id })}
+            onClick={() => changeSelectedCategory(e.id)}
+          >
             {e.title}
           </button>
         </li>
       ))}
     </ul>
-  )
-}
+  );
+};
 
-export default CatalogNavbar
+export default CatalogNavbar;

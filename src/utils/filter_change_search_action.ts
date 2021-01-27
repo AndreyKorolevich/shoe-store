@@ -1,5 +1,3 @@
-import { SEARCH_SHOES } from '../redux/actions/actions'
+import { SEARCH_SHOES } from '../redux/actions/actions';
 
-export const filterChangeSearchAction = action => {
-  return action.type === SEARCH_SHOES && action.payload.search.trim().toLowerCase() !== ''
-}
+export const filterChangeSearchAction = (action) => action.type === SEARCH_SHOES && action.payload.search.trim().toLowerCase() !== '';

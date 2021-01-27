@@ -1,4 +1,5 @@
-import { SET_ERROR } from '../actions/actions'
+import { SET_ERROR } from '../actions/actions';
+import { ActionTypeSetError } from '../../interfaces/types';
 
 export interface InitialStateInterface {
   error: null | string
@@ -6,20 +7,18 @@ export interface InitialStateInterface {
 
 const initialState: InitialStateInterface = {
   error: null,
-}
+};
 
-// export interface CatalogActionInterface {
-//     type: typeof SET_SALES_HIT;
-//     payload: Record<string, Array<InterfaceCard>>;
-// }
-
-export default function errorReducer(state = initialState, action: any): InitialStateInterface {
+export default function errorReducer(
+  state = initialState,
+  action: ActionTypeSetError,
+): InitialStateInterface {
   switch (action.type) {
     case SET_ERROR:
       return {
         error: action.payload.error,
-      }
+      };
     default:
-      return state
+      return state;
   }
 }

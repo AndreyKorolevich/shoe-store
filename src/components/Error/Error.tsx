@@ -1,12 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-const Error = () => {
-  return (
-    <section className='top-sales'>
-      <h2 className='text-center'>Страница не найдена</h2>
-      <p>Извините, такая страница не найдена!</p>
-    </section>
-  )
-}
+const Error: React.FC = () => (
+  <section className="top-sales">
+    <h2 className="text-center">Страница не найдена</h2>
+    <p>Извините, такая страница не найдена!</p>
+  </section>
+);
 
-export default Error
+export default Error;
