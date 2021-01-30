@@ -1,22 +1,25 @@
-import { SET_ERROR } from '../actions/actions';
-import { ActionTypeSetError } from '../../interfaces/types';
+import { CLOSE_ERROR, SET_ERROR } from '../actions/actions';
+import { ActionTypeCloseError, ActionTypeSetError } from '../../interfaces/types';
 
 export interface InitialStateInterface {
-  error: null | string;
+  error: boolean;
 }
 
 const initialState: InitialStateInterface = {
-  error: null,
+  error: false,
 };
 
-export default function errorReducer(
-  state = initialState,
-  action: ActionTypeSetError
-): InitialStateInterface {
+type ActionType = ActionTypeSetError | ActionTypeCloseError;
+
+export default function errorReducer(state = initialState, action: ActionType): InitialStateInterface {
   switch (action.type) {
     case SET_ERROR:
       return {
-        error: action.payload.error,
+        error: true,
+      };
+    case CLOSE_ERROR:
+      return {
+        error: false,
       };
     default:
       return state;

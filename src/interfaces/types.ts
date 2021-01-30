@@ -8,6 +8,7 @@ import {
   CHANGE_LOADING_HIT,
   CHANGE_SIZE,
   CLEANING_CART,
+  CLOSE_ERROR,
   DELETE_PRODUCT,
   FETCH_CARD_DETAILS,
   FETCH_CATALOG,
@@ -163,4 +164,7 @@ export type ActionTypeSubmitOrder = {
   payload: {
     id: number;
   };
+};
+export type ActionTypeCloseError = {
+  type: typeof CLOSE_ERROR;
 };
