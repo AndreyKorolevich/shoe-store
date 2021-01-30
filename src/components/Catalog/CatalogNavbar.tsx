@@ -6,7 +6,7 @@ import { FETCH_CERTAIN_SHOES } from '../../redux/actions/actions';
 import { getSearch, getSelectedCategory } from '../../redux/selectors/catalog_selectors';
 
 interface InterfaceCatalogNavbar {
-  categories: Array<InterfaceCategory>
+  categories: Array<InterfaceCategory>;
 }
 
 const CatalogNavbar: React.FC<InterfaceCatalogNavbar> = ({ categories }) => {
@@ -27,23 +27,21 @@ const CatalogNavbar: React.FC<InterfaceCatalogNavbar> = ({ categories }) => {
   };
 
   return (
-    <ul className="catalog-categories nav justify-content-center">
-      <li className="nav-item">
+    <ul className='catalog-categories nav justify-content-center'>
+      <li className='nav-item'>
         <button
-          type="button"
+          type='button'
           className={cn('btn btn-outline-secondary', { active: selectCategory === 0 })}
-          onClick={() => changeSelectedCategory(0)}
-        >
+          onClick={() => changeSelectedCategory(0)}>
           Все
         </button>
       </li>
-      {categories.map((e) => (
-        <li key={e.id} className="nav-item">
+      {categories.map(e => (
+        <li key={e.id} className='nav-item'>
           <button
-            type="button"
+            type='button'
             className={cn('btn btn-outline-secondary', { active: selectCategory === e.id })}
-            onClick={() => changeSelectedCategory(e.id)}
-          >
+            onClick={() => changeSelectedCategory(e.id)}>
             {e.title}
           </button>
         </li>

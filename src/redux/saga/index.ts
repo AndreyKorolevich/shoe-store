@@ -1,6 +1,4 @@
-import {
-  take, fork, spawn, debounce,
-} from 'redux-saga/effects';
+import { take, fork, spawn, debounce } from 'redux-saga/effects';
 import { filterChangeSearchAction } from '../../utils/filter_change_search_action';
 import {
   FETCH_CARD_DETAILS,

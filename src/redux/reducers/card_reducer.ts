@@ -15,10 +15,10 @@ import {
 } from '../../interfaces/types';
 
 export interface InitialStateInterface {
-  openCard: null | CardDetailInterface,
-  isLoadingCardDetails: boolean,
-  count: number,
-  selectedSize: string,
+  openCard: null | CardDetailInterface;
+  isLoadingCardDetails: boolean;
+  count: number;
+  selectedSize: string;
 }
 
 const initialState: InitialStateInterface = {

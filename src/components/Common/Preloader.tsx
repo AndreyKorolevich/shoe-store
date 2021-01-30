@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Preloader: React.FC = () => (
-  <div className="preloader">
+  <div className='preloader'>
     <span />
     <span />
     <span />

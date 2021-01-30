@@ -26,16 +26,16 @@ import {
 } from '../../interfaces/types';
 
 export interface InitialStateInterface {
-  isLoadingHit: boolean,
-  isLoadingCatalog: boolean,
-  catalog: Array<InterfaceCard> | Array<never>,
-  salesHit: Array<InterfaceCard> | Array<never>,
-  categories: Array<InterfaceCategory> | Array<never>,
-  selectCategory: number,
-  offset: number,
-  showLoadElse: boolean,
-  isLoadingAdditionalShoes: boolean,
-  search: string,
+  isLoadingHit: boolean;
+  isLoadingCatalog: boolean;
+  catalog: Array<InterfaceCard> | Array<never>;
+  salesHit: Array<InterfaceCard> | Array<never>;
+  categories: Array<InterfaceCategory> | Array<never>;
+  selectCategory: number;
+  offset: number;
+  showLoadElse: boolean;
+  isLoadingAdditionalShoes: boolean;
+  search: string;
 }
 
 const initialState: InitialStateInterface = {

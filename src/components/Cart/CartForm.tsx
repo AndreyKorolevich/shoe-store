@@ -28,7 +28,7 @@ const CartForm: React.FC = () => {
           phone,
           address,
         },
-        items: selectShoes.map((elem) => ({
+        items: selectShoes.map(elem => ({
           id: elem.id,
           price: elem.price,
           count: elem.count,
@@ -43,50 +43,50 @@ const CartForm: React.FC = () => {
   return (
     <>
       {selectShoes.length !== 0 && (
-        <section className="order">
+        <section className='order'>
           {isLoadingSendForm && <Preloader />}
-          <h2 className="text-center">Оформить заказ</h2>
-          <div className="card cart">
-            <form className="card-body" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="phone">
+          <h2 className='text-center'>Оформить заказ</h2>
+          <div className='card cart'>
+            <form className='card-body' onSubmit={handleSubmit}>
+              <div className='form-group'>
+                <label htmlFor='phone'>
                   Телефон
                   <input
                     onChange={onChange}
                     value={phone}
-                    className="form-control"
-                    name="phone"
-                    placeholder="Ваш телефон"
-                    type="text"
+                    className='form-control'
+                    name='phone'
+                    placeholder='Ваш телефон'
+                    type='text'
                   />
                 </label>
               </div>
-              <div className="form-group">
-                <label htmlFor="phone">
+              <div className='form-group'>
+                <label htmlFor='phone'>
                   Адрес доставки
                   <input
                     onChange={onChange}
                     value={address}
-                    className="form-control"
-                    placeholder="Адрес доставки"
-                    name="address"
-                    type="text"
+                    className='form-control'
+                    placeholder='Адрес доставки'
+                    name='address'
+                    type='text'
                   />
                 </label>
               </div>
-              <div className="form-group form-check">
-                <label className="form-check-label" htmlFor="agreement">
+              <div className='form-group form-check'>
+                <label className='form-check-label' htmlFor='agreement'>
                   <input
                     onChange={onChange}
                     checked={agreement}
-                    type="checkbox"
-                    className="form-check-input"
-                    name="agreement"
+                    type='checkbox'
+                    className='form-check-input'
+                    name='agreement'
                   />
                   Согласен с правилами доставки
                 </label>
               </div>
-              <button type="submit" className="btn btn-outline-secondary" disabled={!agreement}>
+              <button type='submit' className='btn btn-outline-secondary' disabled={!agreement}>
                 Оформить
               </button>
             </form>

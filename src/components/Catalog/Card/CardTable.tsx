@@ -1,18 +1,16 @@
 import React from 'react';
 
 interface CardTableInterface {
-  sku: string,
-  manufacturer: string,
-  color: string,
-  material: string,
-  season: string,
-  reason: string,
+  sku: string;
+  manufacturer: string;
+  color: string;
+  material: string;
+  season: string;
+  reason: string;
 }
 
-const CardTable: React.FC<CardTableInterface> = ({
-  sku, manufacturer, color, material, season, reason,
-}) => (
-  <table className="table table-bordered">
+const CardTable: React.FC<CardTableInterface> = ({ sku, manufacturer, color, material, season, reason }) => (
+  <table className='table table-bordered'>
     <tbody>
       <tr>
         <td>Артикул</td>

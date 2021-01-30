@@ -1,70 +1,170 @@
-# Getting Started with Create React App
+# Дипломный проект курса «React»
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Дипломный проект представляет собой интернет-магазин обуви. Задача заключается в создании работающего приложения, всеми основными функциями которого можно пользоваться.
 
-## Available Scripts
+Как это всегда бывает, вы (фронтенд разработчик) - последний в цепочке создания продукта, поэтому вам необходимо пользоваться результатами работы верстальщика и бекэнд разработчика. И если результаты работы верстальщика вы ещё можете немного подправить, то бэкенд - уже нет (т.е. вы не имеете права редактировать бэкенд).
 
-In the project directory, you can run:
+Большая часть разметки и стилей уже реализована за вас и хранится в каталоге `html`. Как всегда, пояснений особо к разметке нет, т.к. со слов верстальщика "там и так всё понятно".
 
-### `yarn start`
+Перейдём к самому приложению.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Обязательные условия
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Все функции должны быть реализованы.
 
-### `yarn test`
+Внешний вид должен быть аналогичен тому, что представлен в разметке (каталог `html`).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Для хранения состояния корзины и побочных эффектов были использова:
+Redux + Redux Saga
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Важно: не забывайте показывать Loader при загрузке и сообщение об ошибке, если с сервера вы её получили (или вообще ничего не получили, например, у пользователя сейчас нет интернет-соединения).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Вехи
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Приложение содержит следующие самостоятельные экраны (страницы):
 
-### `yarn eject`
+1. Главная страница
+1. Каталог товаров
+1. Информационная страница
+1. Страница товара
+1. Корзина
+1. 404
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Переходы между экранами
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Навигационным центром приложения являются шапка и футер каждого экрана (страницы):
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![Header](./src/img/header-menu.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![Footer](./src/img/footer-menu.png)
 
-## Learn More
+Из шапки можно попасть на следующие экраны:
+* Логотип и ссылка "Главная" - ведут на главную страницу, URL - "/"
+* Каталог - ведёт на страницу каталога, URL - "/catalog.html"
+* О магазине - ведёт на страницу "О магазине", URL - "/about.html"
+* Контакты - ведёт на страницу "Контакты", URL - "/contacts.html"
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Из футера можно попасть на следующие экраны:
+* О магазине - ведёт на страницу "О магазине", URL - "/about.html"
+* Каталог - ведёт на страницу каталога, URL - "/catalog.html"
+* Контакты - ведёт на страницу "Контакты", URL - "/contacts.html"
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Описание экранов
 
-### Code Splitting
+### Главная страница
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Экран «Главная страница» доступен по умолчанию при открытии приложения.
 
-### Analyzing the Bundle Size
+![Frontpage](./src/img/index-loading.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+При загрузке любых данных с помощью сетевых запросов должен отображаться лоадер. У каждого "виджета" лоадер свой (т.е. у вас не должно быть одного лоадера на всё приложение).
 
-### Making a Progressive Web App
+После загрузки страница выглядит следующим образом:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![Frontpage](./src/img/index-loaded.png)
 
-### Advanced Configuration
+Общая схема:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![Frontpage](./src/img/index-loaded-comments.png)
 
-### Deployment
+Вам нужно реализовать:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+При загрузке по кнопке ещё учитываться выбранная категория: т.е. выбрана категория Женская обувь, то при нажатии на ещё делается запрос GET http://localhost:7070/api/items?categoryId=X&offset=6 (и т.д.)
 
-### `yarn build` fails to minify
+Рекламный баннер и текст на нём являются статичными.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Каталог товаров
+
+Экран «Каталог товаров» выглядит следующим образом:
+
+![Catalog](./src/img/catalog.png)
+
+Фактически, он полностью повторяет функциональность каталога на главной странице, за одним исключением: у него есть поле поиска.
+
+При заполнении этого поля отправляется запрос вида: GET http://localhost:7070/api/items?q=<текст в строке поиска>. При этом все правила относительно категории, кнопки "Загрузить ещё" сохраняются.
+
+Если категория меняется, то данные перезагружаются с учётом строки поиска.
+
+Строка поиска реагирует только на полный ввод (не live-поиск).
+
+### Поиск
+
+На всех страницах в шапке присутствует виджет поиска:
+
+![Search](./src/img/search-comments.png)
+
+По умолчанию поисковое поле скрыто, отображается только иконка:
+
+![Search](./src/img/search-closed.png)
+
+Эта иконка должна работать следующим образом: при первом клике открывает строку поиска, при втором - если был введён какой-то текст, то перенаправляет пользователя на страницу каталога (/catalog.html), при этом в поисковом поле должен быть отображён тот же текст, что был ввёден в строку поиска в шапке (и загрузка данных должна происходить исходя из этого):
+
+![Search](./src/img/search-catalog-comments.png)
+
+Поиск на сервере работает по точному совпадению цвета (без учёта регистра, например "черный") и по содержанию слова для названия (без учёта регистра, например можно найти "жар" в "Туфли Жар-птицы").
+
+Если пользователь не ввёл никакой текст, то строка поиска просто схлопывается обратно (как сейчас реализовано в html).
+
+### О магазине, Контакты
+
+Это просто контентные страницы, в которые жёстко зашит контент. Никакой логики (кроме работы виджета поиска и ссылок) там нет.
+
+### Страница товара
+
+Страница товара выглядит следующим образом:
+
+![Item](./assets/catalog-item.png)
+
+Страница открывается при нажатии кнопок "Заказать" в карточках товаров. URL - /catalog/:id.html. Где id - это id товара.
+
+На ней интерес представляет только блок самого товара:
+
+![Item](./assets/catalog-item-comments.png)
+
+Ключевые моменты:
+1. При загрузке показывается лоадер
+1. Для загрузки полной информации о товаре нужно сделать GET http://localhost:7070/api/items/:id, где id - это id товара
+1. Слева выводится картинка (в ответе может быть несколько картинок - вы берёте первую)
+1. Сбоку выводится табличка с данными (все необходимые данные перечислены). Других - не нужно. Если каких-то в приходящем товаре не будет, то просто оставляете поле пустым.
+1. Размеры - выводятся все доступные размеры (у которых флаг `available` равен `true`). По умолчанию ни один размер не выбран. После выбора он становится выделенным, как на скриншоте. Важно: кнопка "В корзину" активируется только тогда, когда есть размеры в наличии и выбран конкретный размер. Размер можно выбрать только один.
+1. Количество - от 1 до 10.
+
+Особые случаи: если ни одного размера не доступно, блок Количество и кнопка "В корзину" не отображаются.
+
+После нажатия на кнопку "В корзину" пользователь перемещается в страницу корзины /cart.html.
+
+### Страница корзины
+
+В корзину можно попасть либо заказав что-то, либо кликнув на иконку корзины в шапке сайта.
+
+Корзина выглядит следующим образом:
+
+![Cart](./assets/cart-comments.png)
+
+Блок корзина - отображает товары, находящиеся в корзине. Все товары хранятся локально в localStorage. Товар можно удалить из корзины (тогда он должен удалиться и из localStorage тоже)
+
+Одной позицией считается пара - Товар + Размер. Т.е. если купить те же босоножки другого размера, то это будет две позиции в корзине. А если два раза купить босоножки того же размера - то изменится количество и общая стоимость (но запись останется в табличке одна).
+
+Важно: стоимость должна фиксироваться при покупке - т.е. вы кладёте в localStorage именно ту стоимость за единицу, которая была в тот момент, когда пользователь нажал "В корзину".
+
+Общая сумма расчитывается на базе суммирования всех позиций при отображении.
+
+Соответственно, виджет корзинки отображает количество позиций в корзине:
+
+![Cart](./src/img/cart-widget.png)
+
+Если в корзине товаров нет вообще, то розового индикатора с числом тоже быть не должно.
+
+Блок оформления заказа позволяет оформить заказ - POST http://localhost:7070/api/order
+
+
+После успешного оформления заказа все данные корзины должны быть вычищены из state и из localStorage.
+
+Не забудьте показать пользователю loader и сообщение об успехе.
+
+### 404
+
+При вводе несуществующего url'а (не соответствующего ни одному из путей), пользователю должна показываться страница 404.html.
+
+Дополнительно (но не обязательно), вы можете обрабатывать ошибку 404 при просмотре деталей товара (т.е. сервер вернул вам ответ с кодом 404).

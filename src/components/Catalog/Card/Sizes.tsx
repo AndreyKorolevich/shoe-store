@@ -6,7 +6,7 @@ import { CHANGE_SIZE } from '../../../redux/actions/actions';
 import { SizeInterface } from '../../../interfaces/interface';
 
 interface SizesInterface {
-  sizes: Array<SizeInterface>
+  sizes: Array<SizeInterface>;
 }
 
 const Sizes: React.FC<SizesInterface> = ({ sizes }) => {
@@ -25,22 +25,19 @@ const Sizes: React.FC<SizesInterface> = ({ sizes }) => {
     .filter((e: SizeInterface) => e.avalible)
     .map((e: SizeInterface) => (
       <button
-        type="button"
+        type='button'
         key={e.size}
         onClick={() => changeSize(e.size)}
         className={cn('catalog-item-size', {
           selected: selectedSize === e.size,
-        })}
-      >
+        })}>
         {e.size}
       </button>
     ));
 
   return (
     <p>
-      Размеры в наличии:
-      {' '}
-      {sortSizes.length === 0 ? 'Извините доступных размеров нет в наличии' : sortSizes}
+      Размеры в наличии: {sortSizes.length === 0 ? 'Извините доступных размеров нет в наличии' : sortSizes}
     </p>
   );
 };

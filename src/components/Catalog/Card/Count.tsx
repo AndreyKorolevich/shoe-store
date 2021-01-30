@@ -25,14 +25,13 @@ const Count: React.FC = () => {
   };
   return (
     <p>
-      Количество:
-      {' '}
-      <span className="btn-group btn-group-sm pl-2">
-        <button onClick={() => changeCount('decrease')} type="button" className="btn btn-secondary">
+      Количество:{' '}
+      <span className='btn-group btn-group-sm pl-2'>
+        <button onClick={() => changeCount('decrease')} type='button' className='btn btn-secondary'>
           -
         </button>
-        <span className="btn btn-outline-primary">{count}</span>
-        <button onClick={() => changeCount('increase')} type="button" className="btn btn-secondary">
+        <span className='btn btn-outline-primary'>{count}</span>
+        <button onClick={() => changeCount('increase')} type='button' className='btn btn-secondary'>
           +
         </button>
       </span>

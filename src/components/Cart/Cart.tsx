@@ -11,17 +11,17 @@ const Cart: React.FC = () => {
   return (
     <>
       <section>
-        <h2 className="text-center">Корзина</h2>
-        <table className="table table-bordered">
+        <h2 className='text-center'>Корзина</h2>
+        <table className='table table-bordered'>
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Название</th>
-              <th scope="col">Размер</th>
-              <th scope="col">Кол-во</th>
-              <th scope="col">Стоимость</th>
-              <th scope="col">Итого</th>
-              <th scope="col">Действия</th>
+              <th scope='col'>#</th>
+              <th scope='col'>Название</th>
+              <th scope='col'>Размер</th>
+              <th scope='col'>Кол-во</th>
+              <th scope='col'>Стоимость</th>
+              <th scope='col'>Итого</th>
+              <th scope='col'>Действия</th>
             </tr>
           </thead>
           <tbody>
@@ -37,15 +37,14 @@ const Cart: React.FC = () => {
               />
             ))}
             <tr>
-              <td colSpan={5} className="text-right">
+              <td colSpan={5} className='text-right'>
                 Общая стоимость
               </td>
               <td>
                 {selectShoes.reduce(
                   (sum: number, e: SelectCardInterface): number => sum + e.price * e.count,
-                  0,
-                )}
-                {' '}
+                  0
+                )}{' '}
                 руб.
               </td>
             </tr>

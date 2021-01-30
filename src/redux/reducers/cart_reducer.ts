@@ -7,8 +7,8 @@ import {
 } from '../../interfaces/types';
 
 export interface InitialStateInterface {
-  selectShoes: [] | Array<SelectCardInterface>,
-  isLoadingSentForm: boolean,
+  selectShoes: [] | Array<SelectCardInterface>;
+  isLoadingSentForm: boolean;
 }
 
 const initialState: InitialStateInterface = {
@@ -21,7 +21,7 @@ type ActionTypes = ActionTypeAddShoesCart | ActionTypeDeleteProduct | ActionType
 export default function cartReducer(state = initialState, action: ActionTypes): InitialStateInterface {
   switch (action.type) {
     case ADD_SHOES_CART: {
-      const index = state.selectShoes.findIndex((e) => e.id === action.payload.id);
+      const index = state.selectShoes.findIndex(e => e.id === action.payload.id);
       let newSelectShoes;
       if (index === -1) {
         newSelectShoes = [...state.selectShoes, action.payload];
@@ -37,7 +37,7 @@ export default function cartReducer(state = initialState, action: ActionTypes): 
       };
     }
     case DELETE_PRODUCT: {
-      const newSelectShoes = state.selectShoes.filter((e) => e.id !== action.payload.id);
+      const newSelectShoes = state.selectShoes.filter(e => e.id !== action.payload.id);
       localStorage.setItem('cart', JSON.stringify(newSelectShoes));
       return {
         ...state,

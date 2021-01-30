@@ -51,22 +51,18 @@ const Search = () => {
     <>
       <button
         onClick={openForm}
-        aria-label="Save"
+        aria-label='Save'
         className={cn('header-controls-pic header-controls-search', {
           theme: isShowForm,
         })}
-        type="button"
+        type='button'
       />
       {isShowForm && (
         <form
-          data-id="search-form"
-          className="header-controls-search-form form-inline"
-          onSubmit={handleSubmit}
-        >
-          <input
-            className="form-control" placeholder="Поиск" onChange={onChange}
-            value={value}
-          />
+          data-id='search-form'
+          className='header-controls-search-form form-inline'
+          onSubmit={handleSubmit}>
+          <input className='form-control' placeholder='Поиск' onChange={onChange} value={value} />
         </form>
       )}
     </>

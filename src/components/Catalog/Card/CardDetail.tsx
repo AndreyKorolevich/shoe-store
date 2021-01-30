@@ -15,7 +15,7 @@ import {
 } from '../../../redux/selectors/card_selector';
 
 const CardDetail: React.FC = ({ match }: any) => {
-  const { id } = match.params
+  const { id } = match.params;
   const history = useHistory();
   const dispatch = useDispatch();
   const isLoadingCardDetails: boolean = useSelector(getLoadingCardDetails);
@@ -49,13 +49,13 @@ const CardDetail: React.FC = ({ match }: any) => {
       {isLoadingCardDetails || openCard === null ? (
         <Preloader />
       ) : (
-        <section className="catalog-item">
-          <h2 className="text-center">{openCard.title}</h2>
-          <div className="row">
-            <div className="col-5">
-              <img src={openCard.images[0]} className="img-fluid" alt={openCard.title} />
+        <section className='catalog-item'>
+          <h2 className='text-center'>{openCard.title}</h2>
+          <div className='row'>
+            <div className='col-5'>
+              <img src={openCard.images[0]} className='img-fluid' alt={openCard.title} />
             </div>
-            <div className="col-7">
+            <div className='col-7'>
               <CardTable
                 sku={openCard.sku}
                 manufacturer={openCard.manufacturer}
@@ -64,16 +64,15 @@ const CardDetail: React.FC = ({ match }: any) => {
                 season={openCard.season}
                 reason={openCard.reason}
               />
-              <div className="text-center">
+              <div className='text-center'>
                 <Sizes sizes={openCard.sizes} />
                 <Count />
               </div>
               <button
                 onClick={onClick}
-                type="button"
-                className="btn btn-danger btn-block btn-lg"
-                disabled={selectedSize === ''}
-              >
+                type='button'
+                className='btn btn-danger btn-block btn-lg'
+                disabled={selectedSize === ''}>
                 В корзину
               </button>
             </div>

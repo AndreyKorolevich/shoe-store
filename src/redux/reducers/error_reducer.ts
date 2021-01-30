@@ -2,7 +2,7 @@ import { SET_ERROR } from '../actions/actions';
 import { ActionTypeSetError } from '../../interfaces/types';
 
 export interface InitialStateInterface {
-  error: null | string
+  error: null | string;
 }
 
 const initialState: InitialStateInterface = {
@@ -11,7 +11,7 @@ const initialState: InitialStateInterface = {
 
 export default function errorReducer(
   state = initialState,
-  action: ActionTypeSetError,
+  action: ActionTypeSetError
 ): InitialStateInterface {
   switch (action.type) {
     case SET_ERROR:

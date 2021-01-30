@@ -19,8 +19,8 @@ const Main: React.FC = () => {
 
   return (
     <>
-      <section className="top-sales">
-        <h2 className="text-center">Хиты продаж!</h2>
+      <section className='top-sales'>
+        <h2 className='text-center'>Хиты продаж!</h2>
         {isLoadingHit ? <Preloader /> : <SalesHit salesHit={salesHit} />}
       </section>
       <Catalog showSearchForm={false} />
