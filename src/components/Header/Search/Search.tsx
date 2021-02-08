@@ -62,7 +62,8 @@ const Search = () => {
           data-id='search-form'
           className='header-controls-search-form form-inline'
           onSubmit={handleSubmit}>
-          <input className='form-control' placeholder='Поиск' onChange={onChange} value={value} />
+          <input className='form-control' placeholder='Поиск' onChange={onChange}
+value={value} />
         </form>
       )}
     </>

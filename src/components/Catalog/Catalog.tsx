@@ -60,7 +60,8 @@ const Catalog: React.FC<CatalogInterface> = ({ showSearchForm = true }) => {
           <CatalogNavbar categories={categories} />
           <div className='row'>
             {catalog.map(e => (
-              <Card key={e.id} id={e.id} price={e.price} src={e.images[0]} title={e.title} />
+              <Card key={e.id} id={e.id} price={e.price}
+src={e.images[0]} title={e.title} />
             ))}
           </div>
           <div className='text-center additional'>

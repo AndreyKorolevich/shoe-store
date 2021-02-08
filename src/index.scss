@@ -403,18 +403,6 @@ h2, .h2 {
   display: flex;
 }
 
-.error {
-  position: absolute;
-  top: calc(50% - 135px);
-  left: calc(50% - 250px);
-  width: 500px;
-  min-height: 269px;
-  background-color: #FAFAFA;
-  border: 1px solid gainsboro;
-  border-radius: 10px;
-  animation: 0.4s ease-out 1 forwards moving;
-}
-
 @keyframes moving {
   0% {
     opacity: 0;
@@ -427,64 +415,73 @@ h2, .h2 {
   }
 }
 
-.error-header {
-  padding: 20px 0 0 25px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid #EDEDF0;
-  @include fontNormal;
-  font-size: 16px;
-  line-height: 22px;
-  box-sizing: border-box;
+.mod {
+  position: absolute;
+  top: calc(50% - 135px);
+  left: calc(50% - 250px);
+  width: 500px;
+  min-height: 269px;
+  background-color: #FAFAFA;
+  border: 1px solid gainsboro;
+  border-radius: 10px;
+  animation: 0.4s ease-out 1 forwards moving;
+
+  &-header {
+    padding: 20px 0 0 25px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #EDEDF0;
+    @include fontNormal;
+    font-size: 16px;
+    line-height: 22px;
+    box-sizing: border-box;
+  }
+
+  &-body {
+    @include fontNormal;
+    font-size: 13px;
+    line-height: 18px;
+    padding: 22px 30px 50px 27px;
+    background-color: #FFFFFF;;
+  }
+
+
+  &-footer {
+    border-top: 1px solid #EDEDF0;
+    display: flex;
+    padding: 40px 30px 13px 0;
+    justify-content: flex-end;
+
+    &__button {
+      padding: 9px 15px 8px 15px;
+      @include fontNormal;
+      font-size: 12px;
+      line-height: 17px;
+      margin-right: 6px;
+      width: auto;
+    }
+
+    .light {
+      background-color: #FFFFFF;
+      color: #333333;
+      border: 1px solid #CCCCCC;
+
+      &:hover {
+        background-color: #F6F8FD;;
+      }
+      &:active{
+        background-color: #F1F2F7;
+      }
+    }
+  }
+
+  &-header__name {
+    text-transform: lowercase;
+  }
 }
 
-.error-body {
-  @include fontNormal;
-  font-size: 13px;
-  line-height: 18px;
-  padding: 22px 30px 0 27px;
-  background-color: #FFFFFF;;
-}
-
-.error-body__warn {
+.error {
   color: #F80000;
   padding-bottom: 24px;
-}
-
-.error-footer {
-  height: 47px;
-  margin-top: 11px;
-  box-sizing: border-box;
-  border-top: 1px solid #EDEDF0;
-  display: flex;
-  padding: 0 30px 13px 0;
-  justify-content: flex-end;
-
-  .error-footer__button {
-    padding: 9px 15px 8px 15px;
-    @include fontNormal;
-    font-size: 12px;
-    line-height: 17px;
-    margin-right: 6px;
-    border: 1px solid #4C88E8;
-    width: auto;
-  }
-
-  .light {
-    background-color: #FFFFFF;
-    color: #333333;
-    border: 1px solid #CCCCCC;
-
-    &:hover {
-      background-color: #F6F8FD;;
-    }
-    &:active{
-      background-color: #F1F2F7;
-    }
-  }
-}
-
-.error-header__name {
-  text-transform: lowercase;
 }
 
 #modal-root {
@@ -502,4 +499,8 @@ h2, .h2 {
     align-items: center;
     justify-content: center;
   }
+}
+
+.success {
+  font-size: 16px;
 }

@@ -1,22 +1,37 @@
-import { ADD_SHOES_CART, CLEANING_CART, DELETE_PRODUCT } from '../actions/actions';
+import {
+  ADD_SHOES_CART,
+  CLEANING_CART,
+  DELETE_PRODUCT,
+  SET_CART_FROM_LOCALSTORAGE,
+  SHOW_SUCCESS_ORDER_SHOES,
+} from '../actions/actions';
 import { SelectCardInterface } from '../../interfaces/interface';
 import {
   ActionTypeAddShoesCart,
   ActionTypeCleaningCart,
   ActionTypeDeleteProduct,
+  ActionTypeSetCart,
+  ActionTypeShowSuccess,
 } from '../../interfaces/types';
 
 export interface InitialStateInterface {
   selectShoes: [] | Array<SelectCardInterface>;
   isLoadingSentForm: boolean;
+  isShowSuccessOrderShoes: boolean;
 }
 
 const initialState: InitialStateInterface = {
   selectShoes: [],
   isLoadingSentForm: false,
+  isShowSuccessOrderShoes: false,
 };
 
-type ActionTypes = ActionTypeAddShoesCart | ActionTypeDeleteProduct | ActionTypeCleaningCart;
+type ActionTypes =
+  | ActionTypeAddShoesCart
+  | ActionTypeDeleteProduct
+  | ActionTypeCleaningCart
+  | ActionTypeSetCart
+  | ActionTypeShowSuccess;
 
 export default function cartReducer(state = initialState, action: ActionTypes): InitialStateInterface {
   switch (action.type) {
@@ -49,6 +64,16 @@ export default function cartReducer(state = initialState, action: ActionTypes): 
       return {
         ...state,
         selectShoes: [],
+      };
+    case SET_CART_FROM_LOCALSTORAGE:
+      return {
+        ...state,
+        selectShoes: action.payload.cart,
+      };
+    case SHOW_SUCCESS_ORDER_SHOES:
+      return {
+        ...state,
+        isShowSuccessOrderShoes: !state.isShowSuccessOrderShoes,
       };
     default:
       return state;

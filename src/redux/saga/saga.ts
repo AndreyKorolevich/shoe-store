@@ -15,6 +15,7 @@ import {
   SET_CARD_DETAILS,
   LOADING_CART_SUBMIT,
   CLEANING_CART,
+  SHOW_SUCCESS_ORDER_SHOES,
 } from '../actions/actions';
 
 export function* fetchSalesHitSaga() {
@@ -190,6 +191,9 @@ export function* sendFormSaga(payload) {
     });
     yield put({
       type: CLEANING_CART,
+    });
+    yield put({
+      type: SHOW_SUCCESS_ORDER_SHOES,
     });
   } catch (e) {
     yield put({

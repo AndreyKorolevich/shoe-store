@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, useLocation } from 'react-router';
+import { useHistory } from 'react-router';
 import { ADD_SHOES_CART, FETCH_CARD_DETAILS } from '../../../redux/actions/actions';
 import { CardDetailInterface } from '../../../interfaces/interface';
 import CardTable from './CardTable';
@@ -30,7 +30,7 @@ const CardDetail: React.FC = ({ match }: any) => {
         id: id,
       },
     });
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const onClick = () => {
     dispatch({

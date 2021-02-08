@@ -40,7 +40,8 @@ const CatalogSearch: React.FC<CatalogSearchInterface> = props => {
 
   return (
     <form className='catalog-search-form form-inline' onSubmit={handleSubmit}>
-      <input name='search' className='form-control' value={value} placeholder='Поиск' onChange={onChange} />
+      <input name='search' className='form-control' value={value}
+placeholder='Поиск' onChange={onChange} />
     </form>
   );
 };

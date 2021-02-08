@@ -1,12 +1,27 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { getSelectShoes } from '../../redux/selectors/cart_selector';
 import CartForm from './CartForm';
-import { SelectCardInterface } from '../../interfaces/interface';
 import CartElement from './CartElement';
+import { SelectCardInterface } from '../../interfaces/interface';
+import { SET_CART_FROM_LOCALSTORAGE } from '../../redux/actions/actions';
+import SuccessOrder from "./SuccessOrder";
 
 const Cart: React.FC = () => {
   const selectShoes: Array<SelectCardInterface> = useSelector(getSelectShoes);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      dispatch({
+        type: SET_CART_FROM_LOCALSTORAGE,
+        payload: {
+          cart: JSON.parse(cart),
+        },
+      });
+    }
+  }, [dispatch]);
 
   return (
     <>
@@ -52,6 +67,7 @@ const Cart: React.FC = () => {
         </table>
       </section>
       <CartForm />
+      <SuccessOrder/>
     </>
   );
 };

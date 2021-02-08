@@ -1,4 +1,4 @@
-import { CardDetailInterface, InterfaceCard, InterfaceCategory } from './interface';
+import { CardDetailInterface, InterfaceCard, InterfaceCategory, SelectCardInterface } from './interface';
 import {
   ADD_SHOES_CART,
   CHANGE_CATALOG_SEARCH,
@@ -14,6 +14,7 @@ import {
   FETCH_CATALOG,
   FETCH_CERTAIN_SHOES,
   LOAD_ELSE,
+  SET_CART_FROM_LOCALSTORAGE,
   SET_CARD_DETAILS,
   SET_CATALOG,
   SET_CERTAIN_CATALOG,
@@ -24,6 +25,7 @@ import {
   SET_SALES_HIT,
   SET_SELECTED_CATEGORY,
   SUBMIT_ORDER,
+  SHOW_SUCCESS_ORDER_SHOES,
 } from '../redux/actions/actions';
 
 export type ActionTypeCardDetails = {
@@ -65,6 +67,15 @@ export type ActionTypeDeleteProduct = {
 };
 export type ActionTypeCleaningCart = {
   type: typeof CLEANING_CART;
+};
+export type ActionTypeShowSuccess = {
+  type: typeof SHOW_SUCCESS_ORDER_SHOES;
+};
+export type ActionTypeSetCart = {
+  type: typeof SET_CART_FROM_LOCALSTORAGE;
+  payload: {
+    cart: Array<SelectCardInterface>;
+  };
 };
 export type ActionTypeHit = {
   type: typeof SET_SALES_HIT;
