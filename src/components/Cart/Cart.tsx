@@ -4,7 +4,7 @@ import { getSelectShoes } from '../../redux/selectors/cart_selector';
 import CartForm from './CartForm';
 import CartElement from './CartElement';
 import { SelectCardInterface } from '../../interfaces/interface';
-import { SET_CART_FROM_LOCALSTORAGE } from '../../redux/actions/actions';
+import {SET_CART_FROM_LOCALSTORAGE, setCartFromLocalstorage} from '../../redux/actions/actions';
 import SuccessOrder from "./SuccessOrder";
 
 const Cart: React.FC = () => {
@@ -14,12 +14,7 @@ const Cart: React.FC = () => {
   useEffect(() => {
     const cart = localStorage.getItem('cart');
     if (cart) {
-      dispatch({
-        type: SET_CART_FROM_LOCALSTORAGE,
-        payload: {
-          cart: JSON.parse(cart),
-        },
-      });
+      dispatch(setCartFromLocalstorage(cart));
     }
   }, [dispatch]);
 

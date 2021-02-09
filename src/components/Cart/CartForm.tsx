@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { SelectCardInterface } from '../../interfaces/interface';
 import { getLoadingSendForm, getSelectShoes } from '../../redux/selectors/cart_selector';
-import { SUBMIT_ORDER } from '../../redux/actions/actions';
+import {SUBMIT_ORDER, submitOrder} from '../../redux/actions/actions';
 import Preloader from '../Common/Preloader';
 
 const CartForm: React.FC = () => {
@@ -21,20 +21,7 @@ const CartForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-    dispatch({
-      type: SUBMIT_ORDER,
-      payload: {
-        owner: {
-          phone,
-          address,
-        },
-        items: selectShoes.map(elem => ({
-          id: elem.id,
-          price: elem.price,
-          count: elem.count,
-        })),
-      },
-    });
+    dispatch(submitOrder(phone, address, selectShoes));
     setAddress('');
     setPhone('');
     setAgreement(false);
@@ -52,36 +39,23 @@ const CartForm: React.FC = () => {
                 <label htmlFor='phone'>
                   Телефон
                   <input
-                    onChange={onChange}
-                    value={phone}
-                    className='form-control'
-                    name='phone'
-                    placeholder='Ваш телефон'
-                    type='text'
+                    onChange={onChange} value={phone} className='form-control'
+                    name='phone' placeholder='Ваш телефон' type='text'
                   />
                 </label>
               </div>
               <div className='form-group'>
                 <label htmlFor='phone'>
                   Адрес доставки
-                  <input
-                    onChange={onChange}
-                    value={address}
-                    className='form-control'
-                    placeholder='Адрес доставки'
-                    name='address'
-                    type='text'
+                  <input onChange={onChange} value={address} className='form-control'
+                    placeholder='Адрес доставки' name='address' type='text'
                   />
                 </label>
               </div>
               <div className='form-group form-check'>
                 <label className='form-check-label' htmlFor='agreement'>
-                  <input
-                    onChange={onChange}
-                    checked={agreement}
-                    type='checkbox'
-                    className='form-check-input'
-                    name='agreement'
+                  <input onChange={onChange} checked={agreement} type='checkbox'
+                    className='form-check-input' name='agreement'
                   />
                   Согласен с правилами доставки
                 </label>

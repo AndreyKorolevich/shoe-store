@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Preloader from './Common/Preloader';
 import SalesHit from './SalesHit';
-import { FETCH_SALES_HIT } from '../redux/actions/actions';
+import {fetchSalesHit} from '../redux/actions/actions';
 import { getLoadingHit, getSalesHit } from '../redux/selectors/catalog_selectors';
 import { InterfaceCard } from '../interfaces/interface';
 import Catalog from './Catalog/Catalog';
@@ -12,9 +12,7 @@ const Main: React.FC = () => {
   const salesHit: Array<InterfaceCard> = useSelector(getSalesHit);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({
-      type: FETCH_SALES_HIT,
-    });
+    dispatch(fetchSalesHit());
   }, [dispatch]);
 
   return (

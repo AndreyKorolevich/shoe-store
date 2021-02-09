@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import cn from 'classnames';
 import { getSelectedCategory } from '../../../redux/selectors/catalog_selectors';
-import { CHANGE_CATALOG_SEARCH, SEARCH_SHOES } from '../../../redux/actions/actions';
+import {changeCatalogShoes, searchShoes} from '../../../redux/actions/actions';
 
 const Search = () => {
   const [isShowForm, setIsShowForm] = useState(false);
@@ -12,27 +12,16 @@ const Search = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const searchShoes = () => {
-    dispatch({
-      type: CHANGE_CATALOG_SEARCH,
-      payload: {
-        search: value,
-      },
-    });
-    dispatch({
-      type: SEARCH_SHOES,
-      payload: {
-        search: value,
-        selectCategory,
-      },
-    });
+  const search = () => {
+    dispatch(changeCatalogShoes(value));
+    dispatch(searchShoes(selectCategory, value));
   };
 
   const openForm = () => {
     if (value.trim() === '') {
       setIsShowForm(!isShowForm);
     } else {
-      searchShoes();
+      search();
       history.push('catalog.html');
     }
     return 1;
@@ -40,7 +29,7 @@ const Search = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    searchShoes();
+    search();
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -63,7 +52,7 @@ const Search = () => {
           className='header-controls-search-form form-inline'
           onSubmit={handleSubmit}>
           <input className='form-control' placeholder='Поиск' onChange={onChange}
-value={value} />
+                 value={value} />
         </form>
       )}
     </>

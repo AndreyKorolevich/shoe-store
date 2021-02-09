@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import { ADD_SHOES_CART, FETCH_CARD_DETAILS } from '../../../redux/actions/actions';
+import {ADD_SHOES_CART, addShoesCart, fetchCardDetails} from '../../../redux/actions/actions';
 import { CardDetailInterface } from '../../../interfaces/interface';
 import CardTable from './CardTable';
 import Preloader from '../../Common/Preloader';
@@ -24,23 +24,11 @@ const CardDetail: React.FC = ({ match }: any) => {
   const openCard: CardDetailInterface = useSelector(getCardDetails);
 
   useEffect(() => {
-    dispatch({
-      type: FETCH_CARD_DETAILS,
-      payload: {
-        id: id,
-      },
-    });
+    dispatch(fetchCardDetails(id));
   }, [dispatch, id]);
 
   const onClick = () => {
-    dispatch({
-      type: ADD_SHOES_CART,
-      payload: {
-        ...openCard,
-        count,
-        selectedSize,
-      },
-    });
+    dispatch(addShoesCart(openCard, count, selectedSize));
     history.push('/cart.html');
   };
 

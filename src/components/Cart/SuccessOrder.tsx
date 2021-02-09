@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Modal from "../Common/Modal";
-import {SHOW_SUCCESS_ORDER_SHOES} from "../../redux/actions/actions";
+import {showSuccessOrder} from "../../redux/actions/actions";
 import {getShowSuccessOrder} from "../../redux/selectors/cart_selector";
 
 const SuccessOrder: React.FC = () => {
@@ -9,9 +9,7 @@ const SuccessOrder: React.FC = () => {
     const dispatch = useDispatch();
 
     const onCancel = () => {
-        dispatch({
-            type: SHOW_SUCCESS_ORDER_SHOES,
-        });
+        dispatch(showSuccessOrder());
     };
 
     return (

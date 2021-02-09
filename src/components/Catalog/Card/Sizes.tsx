@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSelectedSize } from '../../../redux/selectors/card_selector';
-import { CHANGE_SIZE } from '../../../redux/actions/actions';
+import {CHANGE_SIZE, changeSize} from '../../../redux/actions/actions';
 import { SizeInterface } from '../../../interfaces/interface';
 
 interface SizesInterface {
@@ -12,13 +12,8 @@ interface SizesInterface {
 const Sizes: React.FC<SizesInterface> = ({ sizes }) => {
   const selectedSize: string = useSelector(getSelectedSize);
   const dispatch = useDispatch();
-  const changeSize = (size: string): void => {
-    dispatch({
-      type: CHANGE_SIZE,
-      payload: {
-        size,
-      },
-    });
+  const onClick = (size: string): void => {
+    dispatch(changeSize(size));
   };
 
   const sortSizes = sizes
@@ -27,7 +22,7 @@ const Sizes: React.FC<SizesInterface> = ({ sizes }) => {
       <button
         type='button'
         key={e.size}
-        onClick={() => changeSize(e.size)}
+        onClick={() => onClick(e.size)}
         className={cn('catalog-item-size', {
           selected: selectedSize === e.size,
         })}>

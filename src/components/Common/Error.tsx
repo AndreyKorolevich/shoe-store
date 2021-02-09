@@ -2,16 +2,14 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getError } from '../../redux/selectors/error_selector';
 import Modal from './Modal';
-import {CLOSE_ERROR} from "../../redux/actions/actions";
+import {closeError} from "../../redux/actions/actions";
 
 const Error: React.FC = () => {
   const error = useSelector(getError);
   const dispatch = useDispatch();
 
   const onCancel = () => {
-    dispatch({
-      type: CLOSE_ERROR,
-    });
+    dispatch(closeError());
   };
 
   return (

@@ -1,4 +1,4 @@
-import { CardDetailInterface, InterfaceCard, InterfaceCategory, SelectCardInterface } from './interface';
+import {CardDetailInterface, InterfaceCard, InterfaceCategory, InterfaceOrder, SelectCardInterface} from './interface';
 import {
   ADD_SHOES_CART,
   CHANGE_CATALOG_SEARCH,
@@ -25,7 +25,7 @@ import {
   SET_SALES_HIT,
   SET_SELECTED_CATEGORY,
   SUBMIT_ORDER,
-  SHOW_SUCCESS_ORDER_SHOES,
+  SHOW_SUCCESS_ORDER_SHOES, SEARCH_SHOES, FETCH_SALES_HIT,
 } from '../redux/actions/actions';
 
 export type ActionTypeCardDetails = {
@@ -57,6 +57,7 @@ export type ActionTypeAddShoesCart = {
   payload: {
     id: number;
     count: number;
+    selectedSize: string;
   };
 };
 export type ActionTypeDeleteProduct = {
@@ -173,9 +174,23 @@ export type ActionTypeFetchCardDetails = {
 export type ActionTypeSubmitOrder = {
   type: typeof SUBMIT_ORDER;
   payload: {
-    id: number;
+    owner: {
+      phone: string,
+      address: string,
+    },
+    items: Array<InterfaceOrder>
   };
 };
 export type ActionTypeCloseError = {
   type: typeof CLOSE_ERROR;
+};
+export type ActionTypeFetchSalesHit = {
+  type: typeof FETCH_SALES_HIT;
+};
+export type ActionTypeSearchShoes = {
+  type: typeof SEARCH_SHOES;
+  payload: {
+    search:string;
+    selectCategory: number;
+  };
 };

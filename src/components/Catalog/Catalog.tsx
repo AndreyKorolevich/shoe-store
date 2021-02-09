@@ -5,13 +5,13 @@ import Preloader from '../Common/Preloader';
 import CatalogNavbar from './CatalogNavbar';
 import Card from './Card/Card';
 import CatalogSearch from './CatalogSearch';
-import { FETCH_CATALOG, LOAD_ELSE } from '../../redux/actions/actions';
+import {FETCH_CATALOG, fetchCatalog, LOAD_ELSE, loadAdditionalShoes, searchShoes} from '../../redux/actions/actions';
 import {
   getCatalog,
   getCategories,
   getLoadingAdditionalShoes,
   getLoadingCatalog,
-  getOffset,
+  getOffset, getSearch,
   getSelectedCategory,
   getShowLoadElse,
 } from '../../redux/selectors/catalog_selectors';
@@ -28,25 +28,19 @@ const Catalog: React.FC<CatalogInterface> = ({ showSearchForm = true }) => {
   const selectCategory: number = useSelector(getSelectedCategory);
   const showLoadElse: boolean = useSelector(getShowLoadElse);
   const offset: number = useSelector(getOffset);
+  const searchValue: string = useSelector(getSearch);
   const dispatch = useDispatch();
 
   useEffect((): void => {
-    dispatch({
-      type: FETCH_CATALOG,
-      payload: {
-        selectCategory,
-      },
-    });
+    if(searchValue !== '') {
+      dispatch(searchShoes(selectCategory, searchValue));
+    }else{
+      dispatch(fetchCatalog(selectCategory));
+    }
   }, [dispatch, selectCategory]);
 
   const loadElse = (): void => {
-    dispatch({
-      type: LOAD_ELSE,
-      payload: {
-        selectCategory,
-        offset,
-      },
-    });
+    dispatch(loadAdditionalShoes(selectCategory, offset));
   };
 
   return (
@@ -60,8 +54,8 @@ const Catalog: React.FC<CatalogInterface> = ({ showSearchForm = true }) => {
           <CatalogNavbar categories={categories} />
           <div className='row'>
             {catalog.map(e => (
-              <Card key={e.id} id={e.id} price={e.price}
-src={e.images[0]} title={e.title} />
+              <Card key={e.id} id={e.id} price={e.price} src={e.images[0]}
+                    title={e.title} />
             ))}
           </div>
           <div className='text-center additional'>

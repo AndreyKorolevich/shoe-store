@@ -11,6 +11,12 @@ export interface InterfaceCategory {
   title: string;
 }
 
+export interface InterfaceOrder {
+  id: number;
+  price: string;
+  count: number;
+}
+
 export interface SizeInterface {
   size: string;
   avalible: boolean;

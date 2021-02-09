@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { DELETE_PRODUCT } from '../../redux/actions/actions';
+import {deleteProduct} from "../../redux/actions/actions";
 
 interface CartElementInterface {
   id: number;
@@ -14,13 +14,8 @@ interface CartElementInterface {
 
 const CartElement: React.FC<CartElementInterface> = ({ count, title, number, size, price, id }) => {
   const dispatch = useDispatch();
-  const deleteProduct = (selectProduct: number): void => {
-    dispatch({
-      type: DELETE_PRODUCT,
-      payload: {
-        id: selectProduct,
-      },
-    });
+  const onClick = (selectProduct: number): void => {
+    dispatch(deleteProduct(selectProduct));
   };
 
   return (
@@ -34,7 +29,7 @@ const CartElement: React.FC<CartElementInterface> = ({ count, title, number, siz
       <td>{price} руб.</td>
       <td>{price * count} руб.</td>
       <td>
-        <button onClick={() => deleteProduct(id)} type='button' className='btn btn-outline-danger btn-sm'>
+        <button onClick={() => onClick(id)} type='button' className='btn btn-outline-danger btn-sm'>
           Удалить
         </button>
       </td>
