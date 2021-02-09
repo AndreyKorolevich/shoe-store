@@ -20,7 +20,7 @@ const Card: React.FC<CardPropsInterface> = ({
       <div className='card-body'>
         <p className='card-text'>{title}</p>
         <p className='card-text'>{price}</p>
-        <NavLink to={`/products/${id}.html`}>
+        <NavLink to={`/products/${id}`}>
           <button type='button' className='btn btn-outline-primary'>
             Заказать
           </button>

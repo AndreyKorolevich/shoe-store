@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {CHANGE_CATALOG_SEARCH, changeCatalogShoes, SEARCH_SHOES, searchShoes} from '../../redux/actions/actions';
-import { getSearch } from '../../redux/selectors/catalog_selectors';
+import { getSearch } from '../../redux/catalog/catalog_selectors';
+import { changeCatalogShoes, searchShoes } from '../../redux/catalog/catalog_actions';
 
 interface CatalogSearchInterface {
   selectCategory: number;
 }
 
-const CatalogSearch: React.FC<CatalogSearchInterface> = ({selectCategory}) => {
+const CatalogSearch: React.FC<CatalogSearchInterface> = ({ selectCategory }) => {
   const value: string = useSelector(getSearch);
   const dispatch = useDispatch();
 
@@ -24,7 +24,7 @@ const CatalogSearch: React.FC<CatalogSearchInterface> = ({selectCategory}) => {
   return (
     <form className='catalog-search-form form-inline' onSubmit={handleSubmit}>
       <input name='search' className='form-control' value={value}
-             placeholder='Поиск' onChange={onChange} />
+placeholder='Поиск' onChange={onChange} />
     </form>
   );
 };

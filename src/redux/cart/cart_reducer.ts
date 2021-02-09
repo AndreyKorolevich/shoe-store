@@ -1,18 +1,15 @@
-import {
-  ADD_SHOES_CART,
-  CLEANING_CART,
-  DELETE_PRODUCT,
-  SET_CART_FROM_LOCALSTORAGE,
-  SHOW_SUCCESS_ORDER_SHOES,
-} from '../actions/actions';
+import { ActionTypeAddShoesCart, ADD_SHOES_CART } from '../card/card_types';
 import { SelectCardInterface } from '../../interfaces/interface';
 import {
-  ActionTypeAddShoesCart,
   ActionTypeCleaningCart,
   ActionTypeDeleteProduct,
   ActionTypeSetCart,
   ActionTypeShowSuccess,
-} from '../../interfaces/types';
+  CLEANING_CART,
+  DELETE_PRODUCT,
+  SET_CART_FROM_LOCALSTORAGE,
+  SHOW_SUCCESS_ORDER_SHOES,
+} from './cart_types';
 
 export interface InitialStateInterface {
   selectShoes: [] | Array<SelectCardInterface>;

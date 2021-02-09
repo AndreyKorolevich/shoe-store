@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getSelectShoes } from '../../redux/selectors/cart_selector';
+import { getSelectShoes } from '../../redux/cart/cart_selector';
 import CartForm from './CartForm';
 import CartElement from './CartElement';
 import { SelectCardInterface } from '../../interfaces/interface';
-import {SET_CART_FROM_LOCALSTORAGE, setCartFromLocalstorage} from '../../redux/actions/actions';
-import SuccessOrder from "./SuccessOrder";
+import SuccessOrder from './SuccessOrder';
+import { setCartFromLocalstorage } from '../../redux/cart/cart_actions';
 
 const Cart: React.FC = () => {
   const selectShoes: Array<SelectCardInterface> = useSelector(getSelectShoes);
@@ -62,7 +62,7 @@ const Cart: React.FC = () => {
         </table>
       </section>
       <CartForm />
-      <SuccessOrder/>
+      <SuccessOrder />
     </>
   );
 };

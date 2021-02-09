@@ -1,29 +1,25 @@
 import { take, fork, spawn, debounce } from 'redux-saga/effects';
 import { filterChangeSearchAction } from '../../utils/filter_change_search_action';
+import { fetchCardDetailsSaga } from '../card/card_sagas';
 import {
-  FETCH_CARD_DETAILS,
+  fetchCatalogSaga,
+  fetchCertainShoesSaga,
+  fetchElseShoesSaga,
+  fetchSalesHitSaga,
+  fetchSearchShoesSaga,
+} from '../catalog/catalog_sagas';
+import { ActionTypeSubmitOrder, SUBMIT_ORDER } from '../cart/cart_types';
+import { sendFormSaga } from '../cart/cart_sagas';
+import { ActionTypeFetchCardDetails, FETCH_CARD_DETAILS } from '../card/card_types';
+import {
+  ActionTypeFetchCatalog,
+  ActionTypeFetchCertainShoes,
+  ActionTypeLoadElse,
   FETCH_CATALOG,
   FETCH_CERTAIN_SHOES,
   FETCH_SALES_HIT,
   LOAD_ELSE,
-  SUBMIT_ORDER,
-} from '../actions/actions';
-import {
-  fetchSalesHitSaga,
-  fetchCatalogSaga,
-  fetchCertainShoesSaga,
-  fetchElseShoesSaga,
-  fetchSearchShoesSaga,
-  fetchCardDetailsSaga,
-  sendFormSaga,
-} from './saga';
-import {
-  ActionTypeFetchCardDetails,
-  ActionTypeFetchCatalog,
-  ActionTypeFetchCertainShoes,
-  ActionTypeLoadElse,
-  ActionTypeSubmitOrder,
-} from '../../interfaces/types';
+} from '../catalog/catalog_types';
 
 function* watchGetSalesHitSaga() {
   while (true) {
@@ -34,8 +30,8 @@ function* watchGetSalesHitSaga() {
 
 function* watchGetCatalogSaga() {
   while (true) {
-    const action: ActionTypeFetchCatalog = yield take(FETCH_CATALOG);
-    yield fork(fetchCatalogSaga, action.payload);
+    yield take(FETCH_CATALOG);
+    yield fork(fetchCatalogSaga);
   }
 }
 

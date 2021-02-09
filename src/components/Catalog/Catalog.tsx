@@ -5,16 +5,16 @@ import Preloader from '../Common/Preloader';
 import CatalogNavbar from './CatalogNavbar';
 import Card from './Card/Card';
 import CatalogSearch from './CatalogSearch';
-import {FETCH_CATALOG, fetchCatalog, LOAD_ELSE, loadAdditionalShoes, searchShoes} from '../../redux/actions/actions';
+import { fetchCatalog, fetchCertainShoes, loadAdditionalShoes } from '../../redux/catalog/catalog_actions';
 import {
   getCatalog,
   getCategories,
   getLoadingAdditionalShoes,
   getLoadingCatalog,
-  getOffset, getSearch,
+  getOffset,
   getSelectedCategory,
   getShowLoadElse,
-} from '../../redux/selectors/catalog_selectors';
+} from '../../redux/catalog/catalog_selectors';
 
 interface CatalogInterface {
   showSearchForm: boolean;
@@ -28,16 +28,15 @@ const Catalog: React.FC<CatalogInterface> = ({ showSearchForm = true }) => {
   const selectCategory: number = useSelector(getSelectedCategory);
   const showLoadElse: boolean = useSelector(getShowLoadElse);
   const offset: number = useSelector(getOffset);
-  const searchValue: string = useSelector(getSearch);
   const dispatch = useDispatch();
 
   useEffect((): void => {
-    if(searchValue !== '') {
-      dispatch(searchShoes(selectCategory, searchValue));
-    }else{
-      dispatch(fetchCatalog(selectCategory));
-    }
+    dispatch(fetchCatalog(selectCategory));
   }, [dispatch, selectCategory]);
+
+  useEffect((): void => {
+    dispatch(fetchCertainShoes(0, ''));
+  }, [dispatch]);
 
   const loadElse = (): void => {
     dispatch(loadAdditionalShoes(selectCategory, offset));
@@ -54,8 +53,8 @@ const Catalog: React.FC<CatalogInterface> = ({ showSearchForm = true }) => {
           <CatalogNavbar categories={categories} />
           <div className='row'>
             {catalog.map(e => (
-              <Card key={e.id} id={e.id} price={e.price} src={e.images[0]}
-                    title={e.title} />
+              <Card key={e.id} id={e.id} price={e.price}
+src={e.images[0]} title={e.title} />
             ))}
           </div>
           <div className='text-center additional'>

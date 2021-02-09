@@ -1,15 +1,3 @@
-import {
-  SET_CATALOG,
-  SET_SALES_HIT,
-  SET_CERTAIN_CATALOG,
-  SET_SELECTED_CATEGORY,
-  SET_ELSE_SHOES,
-  SET_LAST_SHOES,
-  SET_LOADING_ADDITIONAL_SHOES,
-  CHANGE_LOADING_HIT,
-  CHANGE_LOADING_CATALOG,
-  CHANGE_CATALOG_SEARCH,
-} from '../actions/actions';
 import { InterfaceCard, InterfaceCategory } from '../../interfaces/interface';
 import { offset } from '../../constants/constants';
 import {
@@ -23,7 +11,17 @@ import {
   ActionTypeSetLoadingAdditionalShoes,
   ActionTypeSetLoadingCatalog,
   ActionTypeSetLoadingHit,
-} from '../../interfaces/types';
+  CHANGE_CATALOG_SEARCH,
+  CHANGE_LOADING_CATALOG,
+  CHANGE_LOADING_HIT,
+  SET_CATALOG,
+  SET_CERTAIN_CATALOG,
+  SET_ELSE_SHOES,
+  SET_LAST_SHOES,
+  SET_LOADING_ADDITIONAL_SHOES,
+  SET_SALES_HIT,
+  SET_SELECTED_CATEGORY,
+} from './catalog_types';
 
 export interface InitialStateInterface {
   isLoadingHit: boolean;
@@ -73,7 +71,6 @@ export default function catalogReduser(state = initialState, action: ActionTypes
     case SET_CATALOG:
       return {
         ...state,
-        catalog: action.payload.catalog,
         categories: action.payload.categories,
       };
     case SET_CERTAIN_CATALOG:

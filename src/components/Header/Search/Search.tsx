@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import cn from 'classnames';
-import { getSelectedCategory } from '../../../redux/selectors/catalog_selectors';
-import {changeCatalogShoes, searchShoes} from '../../../redux/actions/actions';
+import { getSelectedCategory } from '../../../redux/catalog/catalog_selectors';
+import { changeCatalogShoes, searchShoes } from '../../../redux/catalog/catalog_actions';
 
 const Search = () => {
   const [isShowForm, setIsShowForm] = useState(false);
@@ -22,7 +22,7 @@ const Search = () => {
       setIsShowForm(!isShowForm);
     } else {
       search();
-      history.push('catalog.html');
+      history.push('catalog');
     }
     return 1;
   };
@@ -52,7 +52,7 @@ const Search = () => {
           className='header-controls-search-form form-inline'
           onSubmit={handleSubmit}>
           <input className='form-control' placeholder='Поиск' onChange={onChange}
-                 value={value} />
+value={value} />
         </form>
       )}
     </>

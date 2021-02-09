@@ -1,10 +1,3 @@
-import {
-  ADD_SHOES_CART,
-  CHANGE_COUNT,
-  CHANGE_LOADING_CARD_DETAILS,
-  CHANGE_SIZE,
-  SET_CARD_DETAILS,
-} from '../actions/actions';
 import { CardDetailInterface } from '../../interfaces/interface';
 import {
   ActionTypeAddShoesCart,
@@ -12,7 +5,12 @@ import {
   ActionTypeChangeCount,
   ActionTypeChangeSize,
   ActionTypeLoadingCardDetails,
-} from '../../interfaces/types';
+  ADD_SHOES_CART,
+  CHANGE_COUNT,
+  CHANGE_LOADING_CARD_DETAILS,
+  CHANGE_SIZE,
+  SET_CARD_DETAILS,
+} from './card_types';
 
 export interface InitialStateInterface {
   openCard: null | CardDetailInterface;

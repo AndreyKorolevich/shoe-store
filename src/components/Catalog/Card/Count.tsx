@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCount } from '../../../redux/selectors/card_selector';
-import {CHANGE_COUNT, changeCount} from '../../../redux/actions/actions';
+import { getCount } from '../../../redux/card/card_selector';
+import { changeCount } from '../../../redux/card/card_actions';
 
 const Count: React.FC = () => {
   const count: number = useSelector(getCount);

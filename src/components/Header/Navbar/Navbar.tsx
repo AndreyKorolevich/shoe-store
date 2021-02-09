@@ -9,17 +9,17 @@ const Navbar = () => (
       </NavLink>
     </li>
     <li className='nav-item'>
-      <NavLink className='nav-link' to='/catalog.html'>
+      <NavLink className='nav-link' to='/catalog'>
         Каталог
       </NavLink>
     </li>
     <li className='nav-item'>
-      <NavLink className='nav-link' to='/about.html'>
+      <NavLink className='nav-link' to='/about'>
         О магазине
       </NavLink>
     </li>
     <li className='nav-item'>
-      <NavLink className='nav-link' to='/contacts.html'>
+      <NavLink className='nav-link' to='/contacts'>
         Контакты
       </NavLink>
     </li>

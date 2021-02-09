@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
 import { InterfaceCategory } from '../../interfaces/interface';
-import {fetchCertainShoes} from '../../redux/actions/actions';
-import { getSearch, getSelectedCategory } from '../../redux/selectors/catalog_selectors';
+import { getSearch, getSelectedCategory } from '../../redux/catalog/catalog_selectors';
+import { fetchCertainShoes } from '../../redux/catalog/catalog_actions';
 
 interface InterfaceCatalogNavbar {
   categories: Array<InterfaceCategory>;

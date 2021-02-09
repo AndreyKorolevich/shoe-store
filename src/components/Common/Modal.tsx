@@ -15,9 +15,7 @@ const Modal: React.FC<ModalInterface> = ({ onClose, children }) => {
             &#10006;
           </button>
         </header>
-        <main className='mod-body'>
-          {children}
-        </main>
+        <main className='mod-body'>{children}</main>
         <footer className='mod-footer'>
           <button onClick={onClose} className='btn light mod-footer__button'>
             Close

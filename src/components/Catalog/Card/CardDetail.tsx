@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import {ADD_SHOES_CART, addShoesCart, fetchCardDetails} from '../../../redux/actions/actions';
 import { CardDetailInterface } from '../../../interfaces/interface';
 import CardTable from './CardTable';
 import Preloader from '../../Common/Preloader';
 import Sizes from './Sizes';
 import Count from './Count';
+import { addShoesCart, fetchCardDetails } from '../../../redux/card/card_actions';
 import {
   getCardDetails,
   getCount,
   getLoadingCardDetails,
   getSelectedSize,
-} from '../../../redux/selectors/card_selector';
+} from '../../../redux/card/card_selector';
 
 const CardDetail: React.FC = ({ match }: any) => {
   const { id } = match.params;
@@ -29,7 +29,7 @@ const CardDetail: React.FC = ({ match }: any) => {
 
   const onClick = () => {
     dispatch(addShoesCart(openCard, count, selectedSize));
-    history.push('/cart.html');
+    history.push('/cart');
   };
 
   return (

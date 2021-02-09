@@ -13,7 +13,7 @@ import Main from './components/Main';
 import Banner from './components/Common/Banner';
 import CardDetail from './components/Catalog/Card/CardDetail';
 import Error from './components/Common/Error';
-import { getError } from './redux/selectors/error_selector';
+import { getError } from './redux/error/error_selector';
 import cn from 'classnames';
 
 const App: React.FC = () => {
@@ -28,11 +28,11 @@ const App: React.FC = () => {
               <Banner />
               <Switch>
                 <Route exact path='/' component={Main} />
-                <Route path='/catalog.html' component={Catalog} />
-                <Route path='/about.html' component={About} />
-                <Route path='/contacts.html' component={Contacts} />
-                <Route path='/cart.html' component={Cart} />
-                <Route path='/products/:id.html' component={CardDetail} />
+                <Route path='/catalog' component={Catalog} />
+                <Route path='/about' component={About} />
+                <Route path='/contacts' component={Contacts} />
+                <Route path='/cart' component={Cart} />
+                <Route path='/products/:id' component={CardDetail} />
                 <Route component={NotCorrectUrl} />
               </Switch>
             </div>

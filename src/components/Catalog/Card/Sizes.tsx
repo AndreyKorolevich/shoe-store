@@ -1,9 +1,9 @@
 import React from 'react';
 import cn from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
-import { getSelectedSize } from '../../../redux/selectors/card_selector';
-import {CHANGE_SIZE, changeSize} from '../../../redux/actions/actions';
+import { getSelectedSize } from '../../../redux/card/card_selector';
 import { SizeInterface } from '../../../interfaces/interface';
+import { changeSize } from '../../../redux/card/card_actions';
 
 interface SizesInterface {
   sizes: Array<SizeInterface>;

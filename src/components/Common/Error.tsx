@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getError } from '../../redux/selectors/error_selector';
+import { getError } from '../../redux/error/error_selector';
 import Modal from './Modal';
-import {closeError} from "../../redux/actions/actions";
+import { closeError } from '../../redux/error/error_actions';
 
 const Error: React.FC = () => {
   const error = useSelector(getError);
@@ -15,12 +15,12 @@ const Error: React.FC = () => {
   return (
     <>
       {error && (
-          <Modal onClose={onCancel}>
-            <p className='error'>
-              Извините, произошла ошибка! Попробуйте перезагрузить страницу или повторить ваши действия чуть
-              позже.
-            </p>
-          </Modal>
+        <Modal onClose={onCancel}>
+          <p className='error'>
+            Извините, произошла ошибка! Попробуйте перезагрузить страницу или повторить ваши действия чуть
+            позже.
+          </p>
+        </Modal>
       )}
     </>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import {deleteProduct} from "../../redux/actions/actions";
+import { deleteProduct } from '../../redux/cart/cart_actions';
 
 interface CartElementInterface {
   id: number;
@@ -22,7 +22,7 @@ const CartElement: React.FC<CartElementInterface> = ({ count, title, number, siz
     <tr>
       <th scope='row'>{number}</th>
       <td>
-        <NavLink to='/products/1.html'>{title}</NavLink>
+        <NavLink to='/products/1'>{title}</NavLink>
       </td>
       <td>{size}</td>
       <td>{count}</td>

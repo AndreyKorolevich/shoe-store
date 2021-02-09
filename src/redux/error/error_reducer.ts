@@ -1,5 +1,4 @@
-import { CLOSE_ERROR, SET_ERROR } from '../actions/actions';
-import { ActionTypeCloseError, ActionTypeSetError } from '../../interfaces/types';
+import { ActionTypeCloseError, ActionTypeSetError, CLOSE_ERROR, SET_ERROR } from './error_types';
 
 export interface InitialStateInterface {
   error: boolean;

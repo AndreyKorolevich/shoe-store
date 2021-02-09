@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Preloader from './Common/Preloader';
 import SalesHit from './SalesHit';
-import {fetchSalesHit} from '../redux/actions/actions';
-import { getLoadingHit, getSalesHit } from '../redux/selectors/catalog_selectors';
+import { getLoadingHit, getSalesHit } from '../redux/catalog/catalog_selectors';
 import { InterfaceCard } from '../interfaces/interface';
 import Catalog from './Catalog/Catalog';
+import { fetchSalesHit } from '../redux/catalog/catalog_actions';
 
 const Main: React.FC = () => {
   const isLoadingHit: boolean = useSelector(getLoadingHit);

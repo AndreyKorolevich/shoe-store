@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { SelectCardInterface } from '../../interfaces/interface';
-import { getLoadingSendForm, getSelectShoes } from '../../redux/selectors/cart_selector';
-import {SUBMIT_ORDER, submitOrder} from '../../redux/actions/actions';
+import { getLoadingSendForm, getSelectShoes } from '../../redux/cart/cart_selector';
 import Preloader from '../Common/Preloader';
+import { submitOrder } from '../../redux/cart/cart_actions';
 
 const CartForm: React.FC = () => {
   const [phone, setPhone] = useState('');
@@ -39,23 +39,36 @@ const CartForm: React.FC = () => {
                 <label htmlFor='phone'>
                   Телефон
                   <input
-                    onChange={onChange} value={phone} className='form-control'
-                    name='phone' placeholder='Ваш телефон' type='text'
+                    onChange={onChange}
+                    value={phone}
+                    className='form-control'
+                    name='phone'
+                    placeholder='Ваш телефон'
+                    type='text'
                   />
                 </label>
               </div>
               <div className='form-group'>
                 <label htmlFor='phone'>
                   Адрес доставки
-                  <input onChange={onChange} value={address} className='form-control'
-                    placeholder='Адрес доставки' name='address' type='text'
+                  <input
+                    onChange={onChange}
+                    value={address}
+                    className='form-control'
+                    placeholder='Адрес доставки'
+                    name='address'
+                    type='text'
                   />
                 </label>
               </div>
               <div className='form-group form-check'>
                 <label className='form-check-label' htmlFor='agreement'>
-                  <input onChange={onChange} checked={agreement} type='checkbox'
-                    className='form-check-input' name='agreement'
+                  <input
+                    onChange={onChange}
+                    checked={agreement}
+                    type='checkbox'
+                    className='form-check-input'
+                    name='agreement'
                   />
                   Согласен с правилами доставки
                 </label>
