@@ -18,7 +18,7 @@ export function* fetchCardDetailsSaga(payload) {
     yield put({
       type: CHANGE_LOADING_CARD_DETAILS,
     });
-  } catch (e) {
+  } catch (e: any) {
     yield put({
       type: SET_ERROR,
       payload: {

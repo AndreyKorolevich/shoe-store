@@ -19,7 +19,7 @@ const Card: React.FC<CardPropsInterface> = ({
       <img src={src} className='card-img-top img-fluid' alt={title} />
       <div className='card-body'>
         <p className='card-text'>{title}</p>
-        <p className='card-text'>{price}</p>
+        <p className='card-text'>{price} ₽</p>
         <NavLink to={`/products/${id}`}>
           <button type='button' className='btn btn-outline-primary'>
             Заказать

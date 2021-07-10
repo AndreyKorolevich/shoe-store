@@ -10,7 +10,7 @@ export default class Api {
         throw new Error(response.statusText);
       }
       return response.json();
-    } catch (e) {
+    } catch (e: any) {
       throw new Error(e);
     }
   }
@@ -22,7 +22,7 @@ export default class Api {
         throw new Error(allElements.statusText);
       }
       return allElements.json();
-    } catch (e) {
+    } catch (e: any) {
       throw new Error(e);
     }
   }
@@ -34,7 +34,7 @@ export default class Api {
         throw new Error(categories.statusText);
       }
       return categories.json();
-    } catch (e) {
+    } catch (e: any) {
       throw new Error(e);
     }
   }
@@ -46,7 +46,7 @@ export default class Api {
         throw new Error(shoes.statusText);
       }
       return shoes.json();
-    } catch (e) {
+    } catch (e: any) {
       throw new Error(e);
     }
   }
@@ -64,7 +64,7 @@ export default class Api {
         throw new Error(shoes.statusText);
       }
       return shoes.json();
-    } catch (e) {
+    } catch (e: any) {
       throw new Error(e);
     }
   }
@@ -82,7 +82,7 @@ export default class Api {
         throw new Error(response.statusText);
       }
       return response.json();
-    } catch (e) {
+    } catch (e: any) {
       throw new Error(e);
     }
   }
@@ -95,7 +95,7 @@ export default class Api {
         throw new Error(response.statusText);
       }
       return response.json();
-    } catch (e) {
+    } catch (e: any) {
       throw new Error(e);
     }
   }
@@ -113,7 +113,7 @@ export default class Api {
         throw new Error(response.statusText);
       }
       return response.ok;
-    } catch (e) {
+    } catch (e: any) {
       throw new Error(e);
     }
   }

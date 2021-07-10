@@ -13,7 +13,7 @@ import {
 } from './card_types';
 
 export interface InitialStateInterface {
-  openCard: null | CardDetailInterface;
+  openCard: CardDetailInterface | null;
   isLoadingCardDetails: boolean;
   count: number;
   selectedSize: string;

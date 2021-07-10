@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import { CardDetailInterface } from '../../../interfaces/interface';
 import CardTable from './CardTable';
 import Preloader from '../../Common/Preloader';
 import Sizes from './Sizes';
@@ -21,27 +20,30 @@ const CardDetail: React.FC = ({ match }: any) => {
   const isLoadingCardDetails: boolean = useSelector(getLoadingCardDetails);
   const count: number = useSelector(getCount);
   const selectedSize: string = useSelector(getSelectedSize);
-  const openCard: CardDetailInterface = useSelector(getCardDetails);
+  const openCard = useSelector(getCardDetails);
 
   useEffect(() => {
     dispatch(fetchCardDetails(id));
   }, [dispatch, id]);
 
   const onClick = () => {
-    dispatch(addShoesCart(openCard, count, selectedSize));
-    history.push('/cart');
+    if (openCard) {
+      dispatch(addShoesCart(openCard, count, selectedSize));
+      history.push('/cart');
+    }
   };
 
   return (
     <>
       {isLoadingCardDetails || openCard === null ? (
-        <Preloader />
+        <Preloader/>
       ) : (
         <section className='catalog-item'>
           <h2 className='text-center'>{openCard.title}</h2>
           <div className='row'>
-            <div className='col-5'>
-              <img src={openCard.images[0]} className='img-fluid' alt={openCard.title} />
+            <div className='col-5 item' >
+              <img src={openCard.images[0]} className='img-fluid' alt={openCard.title}/>
+              <span className='item-price'>{openCard.price} ₽</span>
             </div>
             <div className='col-7'>
               <CardTable
@@ -53,8 +55,8 @@ const CardDetail: React.FC = ({ match }: any) => {
                 reason={openCard.reason}
               />
               <div className='text-center'>
-                <Sizes sizes={openCard.sizes} />
-                <Count />
+                <Sizes sizes={openCard.sizes}/>
+                <Count/>
               </div>
               <button
                 onClick={onClick}
