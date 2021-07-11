@@ -19,7 +19,7 @@ export function* sendFormSaga(payload) {
     yield put({
       type: SHOW_SUCCESS_ORDER_SHOES,
     });
-  } catch (e) {
+  } catch (e: any) {
     yield put({
       type: SET_ERROR,
       payload: {
