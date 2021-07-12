@@ -28,7 +28,7 @@ export function* fetchSearchShoesSaga(action) {
     yield put({
       type: CHANGE_LOADING_CATALOG,
     });
-  } catch (e) {
+  } catch (e: any) {
     yield put({
       type: SET_ERROR,
       payload: {
@@ -62,7 +62,7 @@ export function* fetchElseShoesSaga(payload) {
     yield put({
       type: SET_LOADING_ADDITIONAL_SHOES,
     });
-  } catch (e) {
+  } catch (e: any) {
     yield put({
       type: SET_ERROR,
       payload: {
@@ -87,7 +87,7 @@ export function* fetchCertainShoesSaga(payload) {
         catalog: shoes,
       },
     });
-  } catch (e) {
+  } catch (e: any) {
     yield put({
       type: SET_ERROR,
       payload: {
@@ -113,7 +113,7 @@ export function* fetchCatalogSaga() {
     yield put({
       type: CHANGE_LOADING_CATALOG,
     });
-  } catch (e) {
+  } catch (e: any) {
     yield put({
       type: SET_ERROR,
       payload: {
@@ -138,7 +138,7 @@ export function* fetchSalesHitSaga() {
     yield put({
       type: CHANGE_LOADING_HIT,
     });
-  } catch (e) {
+  } catch (e: any) {
     yield put({
       type: SET_ERROR,
       payload: {
