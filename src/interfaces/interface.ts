@@ -19,7 +19,7 @@ export interface InterfaceOrder {
 
 export interface SizeInterface {
   size: string;
-  avalible: boolean;
+  available: boolean;
 }
 
 export interface CardDetailInterface {

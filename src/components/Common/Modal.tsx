@@ -8,6 +8,7 @@ interface ModalInterface {
 
 const Modal: React.FC<ModalInterface> = ({ onClose, children }) => {
   return (
+    // @ts-ignore
     <Portal>
       <div className='mod'>
         <header className='mod-header'>
