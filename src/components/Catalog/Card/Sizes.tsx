@@ -17,7 +17,7 @@ const Sizes: React.FC<SizesInterface> = ({ sizes }) => {
   };
 
   const sortSizes = sizes
-    .filter((e: SizeInterface) => e.avalible)
+    .filter((e: SizeInterface) => e.available)
     .map((e: SizeInterface) => (
       <button
         type='button'
@@ -32,7 +32,9 @@ const Sizes: React.FC<SizesInterface> = ({ sizes }) => {
 
   return (
     <p>
-      Размеры в наличии: {sortSizes.length === 0 ? 'Извините доступных размеров нет в наличии' : sortSizes}
+      Размеры в наличии: {sortSizes.length === 0 ?
+      <span className='no-size'>Извините доступных размеров нет в наличии!</span>
+      : sortSizes}
     </p>
   );
 };
