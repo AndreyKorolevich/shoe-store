@@ -1,170 +1,121 @@
-# Дипломный проект курса «React»
+# React course project
 
-Дипломный проект представляет собой интернет-магазин обуви. Задача заключается в создании работающего приложения, всеми основными функциями которого можно пользоваться.
+The project is an online shoe store. The goal is to create a working application, all the main functions of which can be used.
 
-Как это всегда бывает, вы (фронтенд разработчик) - последний в цепочке создания продукта, поэтому вам необходимо пользоваться результатами работы верстальщика и бекэнд разработчика. И если результаты работы верстальщика вы ещё можете немного подправить, то бэкенд - уже нет (т.е. вы не имеете права редактировать бэкенд).
+## Content
 
-Большая часть разметки и стилей уже реализована за вас и хранится в каталоге `html`. Как всегда, пояснений особо к разметке нет, т.к. со слов верстальщика "там и так всё понятно".
+The application contains the following independent screens (pages):
 
-Перейдём к самому приложению.
+1. Main page.
+1. Product catalog.
+1. Information page.
+1. Product page.
+1. Shopping cart.
+1.404
 
-## Обязательные условия
+## Transitions between screens
 
-Все функции должны быть реализованы.
+The navigation center of the application is the header and footer of each screen (page):
 
-Внешний вид должен быть аналогичен тому, что представлен в разметке (каталог `html`).
+![Header](./assets/header-menu.png)
 
-Для хранения состояния корзины и побочных эффектов были использова:
-Redux + Redux Saga
+![Footer](./assets/footer-menu.png)
 
+From the header you can get to the following screens:
+* logo and link "Home" - lead to the main page, URL - "/";
+* catalog - leads to the catalog page, URL - "/catalog.html";
+* about the store - leads to the page "About the store", URL - "/about.html";
+* contacts - leads to the "Contacts" page, URL - "/contacts.html".
 
-Важно: не забывайте показывать Loader при загрузке и сообщение об ошибке, если с сервера вы её получили (или вообще ничего не получили, например, у пользователя сейчас нет интернет-соединения).
+From the footer you can get to the following screens:
+* about the store - leads to the page "About the store", URL - "/about.html";
+* catalog - leads to the catalog page, URL - "/catalog.html";
+* contacts - leads to the "Contacts" page, URL - "/contacts.html".
 
-## Вехи
+## Description of screens
 
-Приложение содержит следующие самостоятельные экраны (страницы):
+### Main page
 
-1. Главная страница
-1. Каталог товаров
-1. Информационная страница
-1. Страница товара
-1. Корзина
-1. 404
+The Home screen is available by default when you open the app.
 
-## Переходы между экранами
+![Frontpage](./assets/index-loading.png)
 
-Навигационным центром приложения являются шапка и футер каждого экрана (страницы):
+When loading any data using network requests, a loader is displayed. Each widget has its own loader, that is, you should not have one loader for the entire application.
 
-![Header](./src/img/header-menu.png)
+After loading, the page looks like this:
 
-![Footer](./src/img/footer-menu.png)
+![Frontpage](./assets/index-loaded.png)
 
-Из шапки можно попасть на следующие экраны:
-* Логотип и ссылка "Главная" - ведут на главную страницу, URL - "/"
-* Каталог - ведёт на страницу каталога, URL - "/catalog.html"
-* О магазине - ведёт на страницу "О магазине", URL - "/about.html"
-* Контакты - ведёт на страницу "Контакты", URL - "/contacts.html"
+General scheme:
 
-Из футера можно попасть на следующие экраны:
-* О магазине - ведёт на страницу "О магазине", URL - "/about.html"
-* Каталог - ведёт на страницу каталога, URL - "/catalog.html"
-* Контакты - ведёт на страницу "Контакты", URL - "/contacts.html"
+![Frontpage](./assets/index-loaded-comments.png)
 
-## Описание экранов
+### Catalog
 
-### Главная страница
+The Product Catalog screen looks like this:
 
-Экран «Главная страница» доступен по умолчанию при открытии приложения.
+![Catalog](./assets/catalog.png)
 
-![Frontpage](./src/img/index-loading.png)
+In fact, it completely repeats the functionality of the catalog on the main page, with one exception: it has a search field.
 
-При загрузке любых данных с помощью сетевых запросов должен отображаться лоадер. У каждого "виджета" лоадер свой (т.е. у вас не должно быть одного лоадера на всё приложение).
+If the category changes, then the data is reloaded taking into account the search string.
 
-После загрузки страница выглядит следующим образом:
+The search bar only responds to full input, not live searches.
 
-![Frontpage](./src/img/index-loaded.png)
+### Search
 
-Общая схема:
+All pages have a search widget in the header:
 
-![Frontpage](./src/img/index-loaded-comments.png)
+![Search](./assets/search-comments.png)
 
-Вам нужно реализовать:
+By default, the search field is hidden, only the icon is displayed:
 
-При загрузке по кнопке ещё учитываться выбранная категория: т.е. выбрана категория Женская обувь, то при нажатии на ещё делается запрос GET http://localhost:7070/api/items?categoryId=X&offset=6 (и т.д.)
+![Search](./assets/search-closed.png)
 
-Рекламный баннер и текст на нём являются статичными.
+This icon works as follows: on the first click, it opens the search bar, on the second, if some text has been entered, it redirects the user to the catalog page (/catalog.html), while the search field should display the same text as was entered in the search bar in the header, and the data should be loaded based on this:
 
-### Каталог товаров
+![Search](./assets/search-catalog-comments.png)
 
-Экран «Каталог товаров» выглядит следующим образом:
+Searches on the server work on an exact match of a case-insensitive color, such as "black", and on the content of the word for a case-insensitive name, for example, one can find "heat" in "Firebird's Shoes".
 
-![Catalog](./src/img/catalog.png)
+If the user has not entered any text, then the search bar simply collapses back, as is now implemented in html.
 
-Фактически, он полностью повторяет функциональность каталога на главной странице, за одним исключением: у него есть поле поиска.
+### About the store, contacts
 
-При заполнении этого поля отправляется запрос вида: GET http://localhost:7070/api/items?q=<текст в строке поиска>. При этом все правила относительно категории, кнопки "Загрузить ещё" сохраняются.
+These are just content pages with content hardwired into them. There is no logic, except for the work of the search widget and links, there.
 
-Если категория меняется, то данные перезагружаются с учётом строки поиска.
+### Product page
 
-Строка поиска реагирует только на полный ввод (не live-поиск).
-
-### Поиск
-
-На всех страницах в шапке присутствует виджет поиска:
-
-![Search](./src/img/search-comments.png)
-
-По умолчанию поисковое поле скрыто, отображается только иконка:
-
-![Search](./src/img/search-closed.png)
-
-Эта иконка должна работать следующим образом: при первом клике открывает строку поиска, при втором - если был введён какой-то текст, то перенаправляет пользователя на страницу каталога (/catalog.html), при этом в поисковом поле должен быть отображён тот же текст, что был ввёден в строку поиска в шапке (и загрузка данных должна происходить исходя из этого):
-
-![Search](./src/img/search-catalog-comments.png)
-
-Поиск на сервере работает по точному совпадению цвета (без учёта регистра, например "черный") и по содержанию слова для названия (без учёта регистра, например можно найти "жар" в "Туфли Жар-птицы").
-
-Если пользователь не ввёл никакой текст, то строка поиска просто схлопывается обратно (как сейчас реализовано в html).
-
-### О магазине, Контакты
-
-Это просто контентные страницы, в которые жёстко зашит контент. Никакой логики (кроме работы виджета поиска и ссылок) там нет.
-
-### Страница товара
-
-Страница товара выглядит следующим образом:
+The product page looks like this:
 
 ![Item](./assets/catalog-item.png)
 
-Страница открывается при нажатии кнопок "Заказать" в карточках товаров. URL - /catalog/:id.html. Где id - это id товара.
+The page opens when you click the "Order" buttons in the product cards. The URL is /catalog/:id.html. Where id is the product ID.
 
-На ней интерес представляет только блок самого товара:
+On it, only the block of the product itself is of interest:
 
 ![Item](./assets/catalog-item-comments.png)
 
-Ключевые моменты:
-1. При загрузке показывается лоадер
-1. Для загрузки полной информации о товаре нужно сделать GET http://localhost:7070/api/items/:id, где id - это id товара
-1. Слева выводится картинка (в ответе может быть несколько картинок - вы берёте первую)
-1. Сбоку выводится табличка с данными (все необходимые данные перечислены). Других - не нужно. Если каких-то в приходящем товаре не будет, то просто оставляете поле пустым.
-1. Размеры - выводятся все доступные размеры (у которых флаг `available` равен `true`). По умолчанию ни один размер не выбран. После выбора он становится выделенным, как на скриншоте. Важно: кнопка "В корзину" активируется только тогда, когда есть размеры в наличии и выбран конкретный размер. Размер можно выбрать только один.
-1. Количество - от 1 до 10.
+Key points:
+1. When loading, the loader is shown.
+1. To download full product information, you need to do GET http://localhost:7070/api/items/:id, where id is the product ID.
+1. A picture is displayed on the left, there may be several pictures in the answer - you take the first one.
+1. A data plate is displayed on the side, all the necessary data are listed. No others are needed. If there are no incoming goods, then just leave the field empty.
+1. Sizes - displays all available sizes for which the `available` flag is equal to `true`. By default, no size is selected. Once selected, it becomes highlighted, as in the screenshot. Important: the "Add to cart" button is activated only when there are sizes in stock and a specific size is selected. Only one size can be selected.
+1. Quantity - from 1 to 10.
 
-Особые случаи: если ни одного размера не доступно, блок Количество и кнопка "В корзину" не отображаются.
+Special cases: if no size is available, the "Quantity" block and the "Add to Cart" button are not displayed.
 
-После нажатия на кнопку "В корзину" пользователь перемещается в страницу корзины /cart.html.
+After clicking on the “Add to cart” button, the user is redirected to the cart page /cart.html.
 
-### Страница корзины
+### Cart Page
 
-В корзину можно попасть либо заказав что-то, либо кликнув на иконку корзины в шапке сайта.
+You can get into the basket either by ordering something, or by clicking on the basket icon in the site header.
 
-Корзина выглядит следующим образом:
+The cart looks like this:
 
 ![Cart](./assets/cart-comments.png)
 
-Блок корзина - отображает товары, находящиеся в корзине. Все товары хранятся локально в localStorage. Товар можно удалить из корзины (тогда он должен удалиться и из localStorage тоже)
+The "Cart" block displays the items in the cart. All products are stored locally in localStorage. The product can be removed from the cart, then it should be removed from localStorage too.
 
-Одной позицией считается пара - Товар + Размер. Т.е. если купить те же босоножки другого размера, то это будет две позиции в корзине. А если два раза купить босоножки того же размера - то изменится количество и общая стоимость (но запись останется в табличке одна).
-
-Важно: стоимость должна фиксироваться при покупке - т.е. вы кладёте в localStorage именно ту стоимость за единицу, которая была в тот момент, когда пользователь нажал "В корзину".
-
-Общая сумма расчитывается на базе суммирования всех позиций при отображении.
-
-Соответственно, виджет корзинки отображает количество позиций в корзине:
-
-![Cart](./src/img/cart-widget.png)
-
-Если в корзине товаров нет вообще, то розового индикатора с числом тоже быть не должно.
-
-Блок оформления заказа позволяет оформить заказ - POST http://localhost:7070/api/order
-
-
-После успешного оформления заказа все данные корзины должны быть вычищены из state и из localStorage.
-
-Не забудьте показать пользователю loader и сообщение об успехе.
-
-### 404
-
-При вводе несуществующего url'а (не соответствующего ни одному из путей), пользователю должна показываться страница 404.html.
-
-Дополнительно (но не обязательно), вы можете обрабатывать ошибку 404 при просмотре деталей товара (т.е. сервер вернул вам ответ с кодом 404).
+One position is considered a pair - product + size. That is, if you buy the same sandals in a different size, then it will be two positions in the basket. And if you buy sandals of the same size twice, the quantity and total cost will change, but the record will remain
