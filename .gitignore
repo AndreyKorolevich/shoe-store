@@ -4,9 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
-.idea
+../.idea
 yarn.lock
-.eslintcache
+fronted/.eslintcache
 
 # testing
 /coverage
