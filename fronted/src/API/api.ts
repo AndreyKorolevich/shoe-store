@@ -1,6 +1,6 @@
 export default class Api {
   static url() {
-    return 'http://localhost:7070/api/';
+    return 'https://shoes-store.herokuapp.com/api/';
   }
 
   static async fetchSalesHitApi() {
